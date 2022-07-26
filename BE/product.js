@@ -3,11 +3,11 @@ const router = express.Router();
 const mysql = require('mysql');
 
 const db = mysql.createConnection({
-    user:'root',
-    host:'127.0.0.1',
+    user:'rashmi',
+    host:'ec2-34-201-38-7.compute-1.amazonaws.com',
     port:'3306',
     password : 'iwbFR$$0102',
-    database : 'sdddb1'
+    database : 'sdd'
 });
 router.post('/displayProductDetailsDatabasedonproducthsn',(req,res)=>{
     const reqdata = req.body.params;
