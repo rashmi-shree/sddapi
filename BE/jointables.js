@@ -11,6 +11,7 @@ const db = mysql.createConnection({
 });
 router.put('/updaterateofdeliverytableonbook',(req,res)=>{
     const reqdata = req.body.params.data;
+    console.log("hii", reqdata);
     let product_hsn_code = reqdata.map((data)=>{
         return data.product_hsn_code;
     })
