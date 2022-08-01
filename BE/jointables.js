@@ -19,8 +19,8 @@ router.put('/updaterateofdeliverytableonbook',(req,res)=>{
         return data.customer_reference_no.toString();
     });
     db.query(
-        `update sdddb1.delivery_report_table d
-        join sdddb1.product_details_table p
+        `update sdd.delivery_report_table d
+        join sdd.product_details_table p
         on d.product_hsn_code = p.product_hsn_code
         set d.rate = d.quantity * p.rate_per_unit
         where d.product_hsn_code in (?)
@@ -81,8 +81,8 @@ router.put('/updatefinalamountdeliverytableonbook',(req,res)=>{
     });
     db.query(
         `
-        update sdddb1.delivery_report_table d
-        join sdddb1.product_details_table p
+        update sdd.delivery_report_table d
+        join sdd.product_details_table p
         on d.product_hsn_code = p.product_hsn_code
         set d.final_amount = (d.rate + d.cgst + d.sgst + d.igst) - d.discount
         where d.product_hsn_code in (?)
@@ -113,8 +113,8 @@ router.put('/updatebalanceamountdeliverytableonbook',(req,res)=>{
     });
     db.query(
         `
-        update sdddb1.delivery_report_table d
-        join sdddb1.product_details_table p
+        update sdd.delivery_report_table d
+        join sdd.product_details_table p
         on d.product_hsn_code = p.product_hsn_code
         set d.balance_amount = d.final_amount
         where d.product_hsn_code in (?)
@@ -145,8 +145,8 @@ router.put('/updatepaymentstatusdeliverytableonbook',(req,res)=>{
     });
     db.query(
         `
-        update sdddb1.delivery_report_table d
-        join sdddb1.product_details_table p
+        update sdd.delivery_report_table d
+        join sdd.product_details_table p
         on d.product_hsn_code = p.product_hsn_code
         set d.payment_status = "Pending"
         where d.product_hsn_code in (?)
@@ -208,8 +208,8 @@ router.put('/tableonbook',(req,res)=>{
     });
     db.query(
         `
-        update sdddb1.delivery_report_table d
-        join sdddb1.product_details_table p
+        update sdd.delivery_report_table d
+        join sdd.product_details_table p
         on d.product_hsn_code = p.product_hsn_code
         set d.final_amount = (d.rate + d.cgst + d.sgst + d.igst) - d.discount
         where d.product_hsn_code in (?)
@@ -266,8 +266,8 @@ router.put('/updatefinalamountdelivery',(req,res)=>{
         return data.customer_reference_no.toString();
     });
     db.query(
-        `update sdddb1.delivery_report_table d
-        join sdddb1.product_details_table p
+        `update sdd.delivery_report_table d
+        join sdd.product_details_table p
         on d.product_hsn_code = p.product_hsn_code
         set d.final_amount = (d.rate + d.cgst + d.sgst + d.igst) - d.discount
         where d.product_hsn_code in (?)
@@ -300,7 +300,7 @@ router.post('/getCustomerFollowUpDataBooked', (req,res)=>{
         c.phone_number_alter_two, c.from_dealer,
          d.product, d.quantity, c.final_status, d.product_hsn_code, 
          c.comments, c.follow_up_call
-         from sdddb1.customer_follow_up_data c , sdddb1.delivery_report_table d 
+         from sdd.customer_follow_up_data c , sdd.delivery_report_table d 
         where c.customer_reference_no = d.customer_reference_no and c.final_status = "Booked"
         and 
          (c.phone_number = ? or c.customer_name = ? or
@@ -331,8 +331,8 @@ router.post('/downloadinvoicedisplayedastable',(req,res)=>{
         d.gst as 'GSTINUIN', d.phone_number as 'ContactNo', p.product_description as 'DescriptionOfProduct',
         d.product_hsn_code as 'HSNCode', d.quantity as 'Qty', d.rate as 'rate', d.final_amount as 'amount',
         d.cgst as 'CGST', d.sgst as 'SGST', d.igst as 'IGST'
-        from sdddb1.customer_follow_up_data c, 
-        sdddb1.delivery_report_table d, sdddb1.product_details_table p
+        from sdd.customer_follow_up_data c, 
+        sdd.delivery_report_table d, sdd.product_details_table p
         where c.customer_reference_no = d.customer_reference_no 
         and d.product_hsn_code = p.product_hsn_code and 
         (d.invoice_no  = ? or c.customer_reference_no =?)`,
@@ -416,8 +416,8 @@ router.put('/updatekarnatakagstratesfromdealers', (req, res)=>{
 router.put('/updatefinalamountdeliveryfromdealers',(req,res)=>{
     const reqdata = req.body.params;
     let customer_reference_no = reqdata.customer_reference_no;
-    db.query( `update sdddb1.delivery_report_table d
-        join sdddb1.product_details_table p
+    db.query( `update sdd.delivery_report_table d
+        join sdd.product_details_table p
         on d.product_hsn_code = p.product_hsn_code
         set d.final_amount = (d.rate + d.cgst + d.sgst + d.igst) - d.discount
         where d.customer_reference_no in (?)
@@ -449,7 +449,7 @@ router.put('/updatebalanceamountdeliveryfromdealers',(req,res)=>{
     let hsn_codes = reqdata.rowdatadisplayed.map((data)=>{
         return data.product_hsn_code;
     });
-    let q1 = `UPDATE sdddb1.delivery_report_table d join sdddb1.product_details_table p
+    let q1 = `UPDATE sdd.delivery_report_table d join sdd.product_details_table p
     on d.product_hsn_code = p.product_hsn_code SET `;
     let q2="";
     let q3="";

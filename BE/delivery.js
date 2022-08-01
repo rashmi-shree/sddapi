@@ -205,7 +205,7 @@ router.put('/updateDeliveryData',(req,res)=>{
     let customer_reference_no = reqdata.rowdatadisplayed.map((data)=>{
         return data.customer_reference_no.toString();
     });
-    let querystring1 = `UPDATE sdddb1.delivery_report_table SET `;
+    let querystring1 = `UPDATE sdd.delivery_report_table SET `;
     let querystring4 = "booking_advance_amount = ( case ";
     let querystring5 = " end )"
     let querystring6 = "requested_delivery_date = ( case ";
@@ -332,7 +332,7 @@ router.put('/updatebalanceamountdelivery',(req,res)=>{
     let final_amount = reqdata.rowdatadisplayed.map((data)=>{
         return data.final_amount.toString();
     });
-    let q1 = `UPDATE sdddb1.delivery_report_table d join sdddb1.product_details_table p
+    let q1 = `UPDATE sdd.delivery_report_table d join sdd.product_details_table p
     on d.product_hsn_code = p.product_hsn_code SET `;
     let q2="";
     let q3="";
@@ -709,7 +709,7 @@ router.put('/updateDeliveryDatafromdealersform',(req,res)=>{
     let extended_discount = reqdata.rowdatadisplayed.map((data)=>{
         return data.extended_discount;
     });
-    let querystring1 = `UPDATE sdddb1.delivery_report_table SET `;
+    let querystring1 = `UPDATE sdd.delivery_report_table SET `;
     let querystring2 = `booking_advance_amount = ( case `;
     let querystring3 = ` end )`;
     let querystring4 = `delivery_date = ( case `;

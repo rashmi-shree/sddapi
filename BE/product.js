@@ -224,7 +224,7 @@ router.put('/updateProductsDetails',(req,res)=>{
 })
 router.put('/updateProductsDetailsProductData',(req,res)=>{
     const reqdata = req.body.params;
-    var query1 = `UPDATE sdddb1.product_details_table SET stock = ( CASE `;
+    var query1 = `UPDATE sdd.product_details_table SET stock = ( CASE `;
     var query3 = "";
     var query6 = ` ELSE  (stock) END )`;
     for(var i =0; i<reqdata.length; i++){

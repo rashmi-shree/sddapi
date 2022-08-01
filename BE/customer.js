@@ -19,7 +19,7 @@ router.post('/getCustomerFollowUpData', (req,res)=>{
         c.phone_number_alter_two, c.from_dealer,
          d.product, d.quantity, c.final_status, d.product_hsn_code, 
          c.comments, c.follow_up_call
-         from sdddb1.customer_follow_up_data c , sdddb1.delivery_report_table d 
+         from sdd.customer_follow_up_data c , sdd.delivery_report_table d 
         where c.customer_reference_no = d.customer_reference_no and
          (c.phone_number = ? or c.customer_name = ? or
             c.phone_number_alter_one = ? or c.phone_number_alter_two = ?
@@ -50,7 +50,7 @@ router.post('/getCustomerFollowUpDataCustomer', (req,res)=>{
         c.phone_number_alter_two, c.from_dealer,
          d.product, d.quantity, c.final_status, d.product_hsn_code, 
          c.comments, c.follow_up_call
-         from sdddb1.customer_follow_up_data c , sdddb1.delivery_report_table d 
+         from sdd.customer_follow_up_data c , sdd.delivery_report_table d 
         where c.customer_reference_no = d.customer_reference_no and
          (c.phone_number = ? or c.customer_name = ? or
             c.phone_number_alter_one = ? or c.phone_number_alter_two = ?
@@ -157,7 +157,7 @@ router.post('/displayBookedCustomeerData',(req,res)=>{
          d.phone_number_alter_two,
         d.product_hsn_code, d.product, d.quantity, c.comments, c.follow_up_call,
         c.final_status, c.customer_name, c.from_dealer
-        from sdddb1.customer_follow_up_data c, sdddb1.delivery_report_table d
+        from sdd.customer_follow_up_data c, sdd.delivery_report_table d
         where c.customer_reference_no = d.customer_reference_no and c.final_status = ?`,
         [final_status],
         (err, result)=>{
