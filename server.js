@@ -21,6 +21,6 @@ app.use("/product",product);
 app.use("/stateandstatecodes",stateandstatecodes);
 app.use("/dealers",dealers);
 
-app.listen(3306,()=>{
+app.listen(3001,()=>{
     console.log("server running");
 })
