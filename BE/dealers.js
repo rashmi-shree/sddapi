@@ -62,6 +62,7 @@ router.post('/getDealersDetailsData', (req,res)=>{
 })
 router.post('/insertdealersdataintodeliverytable',(req,res)=>{
     const reqdata = req.body.params;
+    console.log("reqdata", reqdata);
     const customer_reference_no = reqdata.customer_reference_no;
     const invoice_no = reqdata.invoice_no;
     const customer_address = reqdata.dealersdata.enterprise_address;
