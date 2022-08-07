@@ -253,6 +253,7 @@ router.post('/customizeddatefetchcustomerdata', (req,res)=>{
 })
 router.put('/updateCustomerDetails',(req,res)=>{
     const reqdata = req.body.params.updaterowdata;
+    console.log("reqdata", reqdata);
     const customer_name = reqdata.customer_name;
     const customer_address = reqdata.customer_address;
     const phone_number = reqdata.phone_number;
