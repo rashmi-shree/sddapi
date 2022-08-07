@@ -262,6 +262,12 @@ router.put('/updateCustomerDetails',(req,res)=>{
     console.log("follow_up_call",follow_up_call);
     const final_status = reqdata.final_status;
     const customer_reference_no = reqdata.customer_reference_no;
+    if (follow_up_call == null){
+        console.log("its null");
+    }
+    else {
+        console.log("not null");
+    }
     // if (follow_up_call != null){
     //     db.query(
     //         `update customer_follow_up_data set
