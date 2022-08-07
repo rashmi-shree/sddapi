@@ -260,7 +260,7 @@ router.put('/updateCustomerDetails',(req,res)=>{
     const follow_up_call = reqdata.follow_up_call;
     const final_status = reqdata.final_status;
     const customer_reference_no = reqdata.customer_reference_no;
-    if (follow_up_call.length <= 10){
+    if (follow_up_call  != null){
         db.query(
             `update customer_follow_up_data set
             customer_name =?, customer_address =?,
