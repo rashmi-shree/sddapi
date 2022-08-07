@@ -263,10 +263,56 @@ router.put('/updateCustomerDetails',(req,res)=>{
     const final_status = reqdata.final_status;
     const customer_reference_no = reqdata.customer_reference_no;
     if (follow_up_call == null){
-        console.log("its null");
+        db.query(
+            `update customer_follow_up_data set
+            customer_name =?, customer_address =?,
+            phone_number =?, comments = ?,
+            final_status =?
+            where customer_reference_no = ?`,
+            [
+                customer_name,
+                customer_address,
+                phone_number,
+                comments,
+                final_status,
+                customer_reference_no
+            ],
+                (err, result)=>{
+                    if(err){
+                        console.log(err);
+                    }
+                    else{
+                        res.json(result);
+                    }
+                }
+            )
     }
     else {
-        console.log("not null");
+        db.query(
+            `update customer_follow_up_data set
+            customer_name =?, customer_address =?,
+            phone_number =?, comments = ?,
+            follow_up_call = ?,
+            final_status =?
+            where customer_reference_no = ?`,
+            [
+                customer_name,
+                customer_address,
+                phone_number,
+                comments,
+                follow_up_call,
+                final_status,
+                customer_reference_no
+            ],
+                (err, result)=>{
+                    if(err){
+                        console.log(err);
+                    }
+                    else{
+                        res.json(result);
+                    }
+                }
+            )
     }
     // if (follow_up_call != null){
     //     db.query(
