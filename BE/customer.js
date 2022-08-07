@@ -253,13 +253,11 @@ router.post('/customizeddatefetchcustomerdata', (req,res)=>{
 })
 router.put('/updateCustomerDetails',(req,res)=>{
     const reqdata = req.body.params.updaterowdata;
-    console.log("reqdata", reqdata);
     const customer_name = reqdata.customer_name;
     const customer_address = reqdata.customer_address;
     const phone_number = reqdata.phone_number;
     const comments = reqdata.comments;
     const follow_up_call = reqdata.follow_up_call;
-    console.log("follow_up_call",follow_up_call);
     const final_status = reqdata.final_status;
     const customer_reference_no = reqdata.customer_reference_no;
     if (follow_up_call == null){
@@ -314,56 +312,5 @@ router.put('/updateCustomerDetails',(req,res)=>{
                 }
             )
     }
-    // if (follow_up_call != null){
-    //     db.query(
-    //         `update customer_follow_up_data set
-    //         customer_name =?, customer_address =?,
-    //         phone_number =?, comments = ?,
-    //         follow_up_call = ?,
-    //         final_status =?
-    //         where customer_reference_no = ?`,
-    //         [
-    //             customer_name,
-    //             customer_address,
-    //             phone_number,
-    //             comments,
-    //             follow_up_call,
-    //             final_status,
-    //             customer_reference_no
-    //         ],
-    //             (err, result)=>{
-    //                 if(err){
-    //                     console.log(err);
-    //                 }
-    //                 else{
-    //                     res.json(result);
-    //                 }
-    //             }
-    //         )
-    // }else{
-    //     db.query(
-    //         `update customer_follow_up_data set
-    //         customer_name =?, customer_address =?,
-    //         phone_number =?, comments = ?,
-    //         final_status =?
-    //         where customer_reference_no = ?`,
-    //         [
-    //             customer_name,
-    //             customer_address,
-    //             phone_number,
-    //             comments,
-    //             final_status,
-    //             customer_reference_no
-    //         ],
-    //             (err, result)=>{
-    //                 if(err){
-    //                     console.log(err);
-    //                 }
-    //                 else{
-    //                     res.json(result);
-    //                 }
-    //             }
-    //         )
-    // }
 })
 module.exports = router;
