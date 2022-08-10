@@ -11,6 +11,7 @@ const db = mysql.createConnection({
 });
 router.put('/updaterateofdeliverytableonbook',(req,res)=>{
     const reqdata = req.body.params.data;
+    console.log("reqdata", reqdata);
     let product_hsn_code = reqdata.map((data)=>{
         return data.product_hsn_code;
     })
@@ -18,8 +19,8 @@ router.put('/updaterateofdeliverytableonbook',(req,res)=>{
         return data.customer_reference_no.toString();
     });
     db.query(
-        `update sdd.delivery_report_table d
-        join sdd.product_details_table p
+        `update delivery_report_table d
+        join product_details_table p
         on d.product_hsn_code = p.product_hsn_code
         set d.rate = d.quantity * p.rate_per_unit
         where d.product_hsn_code in (?)
