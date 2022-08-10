@@ -501,7 +501,7 @@ router.post('/fetchinvoicesfromdelivery',(req,res)=>{
     const reqdata = req.body.params;
     const gst = reqdata.gst;
     db.query(
-        `select invoice_no, verification_status, purchase_status from delivery_report_table 
+        `select distinct invoice_no, verification_status, purchase_status from delivery_report_table 
         where gst = ?`,
         [gst],
         (err, result)=>{
