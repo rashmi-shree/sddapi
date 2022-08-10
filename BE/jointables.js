@@ -11,33 +11,32 @@ const db = mysql.createConnection({
 });
 router.put('/updaterateofdeliverytableonbook',(req,res)=>{
     const reqdata = req.body.params.data;
-    console.log("hii", reqdata);
-    // let product_hsn_code = reqdata.map((data)=>{
-    //     return data.product_hsn_code;
-    // })
-    // let customer_reference_no = reqdata.map((data)=>{
-    //     return data.customer_reference_no.toString();
-    // });
-    // db.query(
-    //     `update sdd.delivery_report_table d
-    //     join sdd.product_details_table p
-    //     on d.product_hsn_code = p.product_hsn_code
-    //     set d.rate = d.quantity * p.rate_per_unit
-    //     where d.product_hsn_code in (?)
-    //      and d.customer_reference_no in (?)`,
-    // [
-    //     product_hsn_code,
-    //     customer_reference_no,
-    // ],
-    //     (err, result)=>{
-    //         if(err){
-    //             console.log(err);
-    //         }
-    //         else{
-    //             res.json(result);
-    //         }
-    //     }
-    // )
+    let product_hsn_code = reqdata.map((data)=>{
+        return data.product_hsn_code;
+    })
+    let customer_reference_no = reqdata.map((data)=>{
+        return data.customer_reference_no.toString();
+    });
+    db.query(
+        `update sdd.delivery_report_table d
+        join sdd.product_details_table p
+        on d.product_hsn_code = p.product_hsn_code
+        set d.rate = d.quantity * p.rate_per_unit
+        where d.product_hsn_code in (?)
+         and d.customer_reference_no in (?)`,
+    [
+        product_hsn_code,
+        customer_reference_no,
+    ],
+        (err, result)=>{
+            if(err){
+                console.log(err);
+            }
+            else{
+                res.json(result);
+            }
+        }
+    )
 })
 
 router.put ('/updatekarnatakagstratesdeliverytableonbook', (req, res)=>{
