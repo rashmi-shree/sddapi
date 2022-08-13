@@ -376,17 +376,18 @@ router.post('/calculaterateofdeliveryofdealers',(req,res)=>{
             let midquerystring1 = q2 + q3 + q5;
             finalquery = q1 + midquerystring1 + q4;
     }
-    db.query(finalquery,
-        (err, result)=>{
-            if(err){
-                res.send(err);
-                console.log(err);
-            }
-            else{
-                res.json(result);
-            }
-        }
-    )
+    console.log("finalquery", finalquery);
+    // db.query(finalquery,
+    //     (err, result)=>{
+    //         if(err){
+    //             res.send(err);
+    //             console.log(err);
+    //         }
+    //         else{
+    //             res.json(result);
+    //         }
+    //     }
+    // )
 })
 router.put('/updatekarnatakagstratesfromdealers', (req, res)=>{
     const reqdata = req.body.params;
