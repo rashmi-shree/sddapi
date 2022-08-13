@@ -474,17 +474,18 @@ router.put('/updatebalanceamountdeliveryfromdealers',(req,res)=>{
         }
     }
     let finalquery = q1 + q2 + q3 + q4 + q5;
-    db.query(finalquery,
-        (err, result)=>{
-            if(err){
-                res.send(err);
-                console.log(err);
-            }
-            else{
-                res.json(result);
-            }
-        }
-    )
+    console.log("final", finalquery);
+    // db.query(finalquery,
+    //     (err, result)=>{
+    //         if(err){
+    //             res.send(err);
+    //             console.log(err);
+    //         }
+    //         else{
+    //             res.json(result);
+    //         }
+    //     }
+    // )
 })
 router.put ('/updateotherstatesgstratesfromdealers', (req, res)=>{
     const reqdata = req.body.params;
