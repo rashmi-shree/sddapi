@@ -390,21 +390,44 @@ router.post('/calculaterateofdeliveryofdealers',(req,res)=>{
 })
 router.put('/updatekarnatakagstratesfromdealers', (req, res)=>{
     const reqdata = req.body.params;
-    let customer_reference_no = reqdata.customer_reference_no;
-    db.query(
-        `update delivery_report_table d
-        join product_details_table p
-        on d.product_hsn_code = p.product_hsn_code
-        set d.discount = d.rate * (p.discount/100), 
-        d.cgst = d.rate * ((p.gst_rate/2)/100), 
-        d.sgst = d.rate * ((p.gst_rate/2)/100), d.igst = 0
-        where d.customer_reference_no = ?;
-        `,
-        [
-            customer_reference_no
-        ],
-        (err,result)=>{
+    let hsn_codes = reqdata.rowdatadisplayed.map((data)=>{
+        return data.product_hsn_code;
+    });
+    let extended_discount = reqdata.rowdatadisplayed.map((data)=>{
+        return data.extended_discount;
+    });
+    let customer_reference_no = reqdata.rowdatadisplayed.map((data)=>{
+        return data.customer_reference_no.toString();
+    });
+    let finalquery = "";
+    let q3 = ``;
+    let q6 = "";
+    let q9 = "";
+    let q10 = "";
+    for(var i =0; i<=extended_discount.length-1; i++){
+            let q1 = `UPDATE delivery_report_table d join product_details_table p on 
+            d.product_hsn_code = p.product_hsn_code SET `;
+            let q2 = `d.discount = (case`;
+            let q7 = `d.cgst = (case`;
+            let q8 = `d.sgst = (case`;
+            let q5 = " end )"
+            let q4 = ` WHERE d.product_hsn_code in (${hsn_codes}) and  d.customer_reference_no in ('${customer_reference_no[0]}')`;
+            if(extended_discount[i] >0 ){
+                q3 += ` when d.product_hsn_code = ${hsn_codes[i]} then d.extended_discount * (p.discount/100)`;
+                q9 += ` when d.product_hsn_code = ${hsn_codes[i]} then d.extended_discount * ((p.gst_rate/2)/100)`;
+                q10 += ` when d.product_hsn_code = ${hsn_codes[i]} then d.extended_discount * ((p.gst_rate/2)/100)`;
+            }
+            else {
+                q3 += ` when d.product_hsn_code = ${hsn_codes[i]} then d.rate * (p.discount/100)`;
+                q9 += ` when d.product_hsn_code = ${hsn_codes[i]} then d.rate * ((p.gst_rate/2)/100)`;
+                q10 += ` when d.product_hsn_code = ${hsn_codes[i]} then d.rate * ((p.gst_rate/2)/100)`;
+            }
+            finalquery = q1 + q2 + q3 + q5 + q7 + q9 + q5 + q8 + q10 + q5 + "," + q4;
+    }
+    db.query(finalquery,
+        (err, result)=>{
             if(err){
+                res.send(err);
                 console.log(err);
             }
             else{
@@ -412,6 +435,27 @@ router.put('/updatekarnatakagstratesfromdealers', (req, res)=>{
             }
         }
     )
+    // db.query(
+    //     `update delivery_report_table d
+    //     join product_details_table p
+    //     on d.product_hsn_code = p.product_hsn_code
+    //     set d.discount = d.rate * (p.discount/100), 
+    //     d.cgst = d.rate * ((p.gst_rate/2)/100), 
+    //     d.sgst = d.rate * ((p.gst_rate/2)/100), d.igst = 0
+    //     where d.customer_reference_no = ?;
+    //     `,
+    //     [
+    //         customer_reference_no
+    //     ],
+    //     (err,result)=>{
+    //         if(err){
+    //             console.log(err);
+    //         }
+    //         else{
+    //             res.json(result);
+    //         }
+    //     }
+    // )
 })
 router.put('/updatefinalamountdeliveryfromdealers',(req,res)=>{
     const reqdata = req.body.params;
@@ -492,22 +536,48 @@ router.put('/updatebalanceamountdeliveryfromdealers',(req,res)=>{
 })
 router.put ('/updateotherstatesgstratesfromdealers', (req, res)=>{
     const reqdata = req.body.params;
-    let customer_reference_no = reqdata.customer_reference_no;
-    let product_hsn_code = reqdata.product_hsn_code;
-    db.query(
-        `update delivery_report_table d
-        join product_details_table p
-        on d.product_hsn_code = p.product_hsn_code
-        set d.discount = d.rate * (p.discount/100), 
-        d.cgst = 0, 
-        d.sgst = 0, d.igst = d.rate * (p.gst_rate/100)
-        where d.customer_reference_no in (?);
-        `,
-        [
-            customer_reference_no
-        ],
-        (err,result)=>{
+    let hsn_codes = reqdata.rowdatadisplayed.map((data)=>{
+        return data.product_hsn_code;
+    });
+    let extended_discount = reqdata.rowdatadisplayed.map((data)=>{
+        return data.extended_discount;
+    });
+    let customer_reference_no = reqdata.rowdatadisplayed.map((data)=>{
+        return data.customer_reference_no.toString();
+    });
+    let finalquery = "";
+    let q3 = ``;
+    let q6 = "";
+    let q9 = "";
+    let q10 = "";
+    let q12 = "";
+    for(var i =0; i<=extended_discount.length-1; i++){
+            let q1 = `UPDATE delivery_report_table d join product_details_table p on 
+            d.product_hsn_code = p.product_hsn_code SET `;
+            let q2 = `d.discount = (case`;
+            let q7 = `d.cgst = (case`;
+            let q8 = `d.sgst = (case`;
+            let q11 = `d.igst = (case`;
+            let q5 = " end )"
+            let q4 = ` WHERE d.product_hsn_code in (${hsn_codes}) and  d.customer_reference_no in ('${customer_reference_no[0]}')`;
+            if(extended_discount[i] >0 ){
+                q3 += ` when d.product_hsn_code = ${hsn_codes[i]} then d.extended_discount * (p.discount/100)`;
+                q9 += ` when d.product_hsn_code = ${hsn_codes[i]} then 0`;
+                q10 += ` when d.product_hsn_code = ${hsn_codes[i]} then 0`;
+                q12 += ` when d.product_hsn_code = ${hsn_codes[i]} then d.extended_discount * (p.gst_rate/100)`;
+            }
+            else {
+                q3 += ` when d.product_hsn_code = ${hsn_codes[i]} then d.rate * (p.discount/100)`;
+                q9 += ` when d.product_hsn_code = ${hsn_codes[i]} then 0`;
+                q10 += ` when d.product_hsn_code = ${hsn_codes[i]} then 0`;
+                q12 += ` when d.product_hsn_code = ${hsn_codes[i]} then d.rate * (p.gst_rate/100)`;
+            }
+            finalquery = q1 + q2 + q3 + q5 + "," + q7 + q9 + q5 + "," + q8 + q10 + q5 + "," + q11 + q12 + q5 + q4;
+    }
+    db.query(finalquery,
+        (err, result)=>{
             if(err){
+                res.send(err);
                 console.log(err);
             }
             else{
@@ -515,6 +585,30 @@ router.put ('/updateotherstatesgstratesfromdealers', (req, res)=>{
             }
         }
     )
+    // const reqdata = req.body.params;
+    // let customer_reference_no = reqdata.customer_reference_no;
+    // let product_hsn_code = reqdata.product_hsn_code;
+    // db.query(
+    //     `update delivery_report_table d
+    //     join product_details_table p
+    //     on d.product_hsn_code = p.product_hsn_code
+    //     set d.discount = d.rate * (p.discount/100), 
+    //     d.cgst = 0, 
+    //     d.sgst = 0, d.igst = d.rate * (p.gst_rate/100)
+    //     where d.customer_reference_no in (?);
+    //     `,
+    //     [
+    //         customer_reference_no
+    //     ],
+    //     (err,result)=>{
+    //         if(err){
+    //             console.log(err);
+    //         }
+    //         else{
+    //             res.json(result);
+    //         }
+    //     }
+    // )
 })
 
 module.exports = router;
