@@ -451,26 +451,26 @@ router.put('/updatebalanceamountdeliveryfromdealers',(req,res)=>{
     });
     let q1 = `UPDATE sdd.delivery_report_table d join sdd.product_details_table p
     on d.product_hsn_code = p.product_hsn_code SET `;
-    let q6 = "d.balance_amount = ( case";
-    let q7 = "d.booking_advance_amount = ( case";
-    let q8 = "d.payment_status = ( case";
+    let q6 = "d.balance_amount = ( case ";
+    let q7 = "d.booking_advance_amount = ( case ";
+    let q8 = "d.payment_status = ( case ";
     let q2="";
     let q3="";
     let q4 = "";
     let q5 =`WHERE d.customer_reference_no = "${customer_reference_no[0]}"`
     for (var i =0; i<=booking_advance_amount.length-1; i++){
         if ((final_amount[i] - booking_advance_amount[i])>0){
-            q2 += `d.product_hsn_code = ${hsn_codes[i]} THEN (d.final_amount - ${booking_advance_amount[i]})`
-            q3 += `d.product_hsn_code = ${hsn_codes[i]} THEN ${booking_advance_amount[i]} ,`
-            q4 += `d.product_hsn_code = ${hsn_codes[i]} THEN "pending"`
+            q2 += `when d.product_hsn_code = ${hsn_codes[i]} THEN (d.final_amount - ${booking_advance_amount[i]})`
+            q3 += `when d.product_hsn_code = ${hsn_codes[i]} THEN ${booking_advance_amount[i]} `
+            q4 += `when d.product_hsn_code = ${hsn_codes[i]} THEN "pending"`
             if(hsn_codes.length-1 != i){
                 q4 += ","
             }
         }
         else {
-            q2 += `d.product_hsn_code = ${hsn_codes[i]} THEN (d.final_amount - ${booking_advance_amount[i]}) , `
-            q3 += `d.product_hsn_code = ${hsn_codes[i]} THEN ${booking_advance_amount[i]} ,`
-            q4 += `d.product_hsn_code = ${hsn_codes[i]} THEN "paid" `
+            q2 += `when d.product_hsn_code = ${hsn_codes[i]} THEN (d.final_amount - ${booking_advance_amount[i]}) `
+            q3 += `when d.product_hsn_code = ${hsn_codes[i]} THEN ${booking_advance_amount[i]} `
+            q4 += `when d.product_hsn_code = ${hsn_codes[i]} THEN "paid" `
             // if(hsn_codes.length-1 != i){
             //     q4 += ","
             // }
