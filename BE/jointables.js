@@ -423,21 +423,19 @@ router.put('/updatekarnatakagstratesfromdealers', (req, res)=>{
                 q9 += ` when d.product_hsn_code = ${hsn_codes[i]} then d.rate * ((p.gst_rate/2)/100)`;
                 q10 += ` when d.product_hsn_code = ${hsn_codes[i]} then d.rate * ((p.gst_rate/2)/100)`;
             }
-            finalquery = q1 + q2 + q3 + q5 + q7 + q9 + q5 + q8 + q10 + q5 + "," + q4;
+            finalquery = q1 + q2 + q3 + q5 + "," + q7 + q9 + q5 + "," + q8 + q10 + q5 + q4;
     }
-    console.log("finalquery", finalquery);
-
-    // db.query(finalquery,
-    //     (err, result)=>{
-    //         if(err){
-    //             res.send(err);
-    //             console.log(err);
-    //         }
-    //         else{
-    //             res.json(result);
-    //         }
-    //     }
-    // )
+    db.query(finalquery,
+        (err, result)=>{
+            if(err){
+                res.send(err);
+                console.log(err);
+            }
+            else{
+                res.json(result);
+            }
+        }
+    )
     // db.query(
     //     `update delivery_report_table d
     //     join product_details_table p
