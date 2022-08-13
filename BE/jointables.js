@@ -371,9 +371,9 @@ router.post('/calculaterateofdeliveryofdealers',(req,res)=>{
                 q3 += ` when d.product_hsn_code = ${hsn_codes[i]} then d.quantity * d.extended_discount`;
             }
             else {
-                q6 += ` when d.product_hsn_code = ${hsn_codes[i]} then d.quantity * p.rate_per_unit `;
+                q3 += ` when d.product_hsn_code = ${hsn_codes[i]} then d.quantity * p.rate_per_unit `;
             }
-            let midquerystring1 = q2 + q3 +q6 + q5;
+            let midquerystring1 = q2 + q3 + q5;
             finalquery = q1 + midquerystring1 + q4;
     }
     db.query(finalquery,
