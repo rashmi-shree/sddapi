@@ -349,6 +349,7 @@ router.post('/downloadinvoicedisplayedastable',(req,res)=>{
 })
 router.post('/calculaterateofdeliveryofdealers',(req,res)=>{
     const reqdata = req.body.params;
+    console.log("hiiiii", reqdata);
     let hsn_codes = reqdata.rowdatadisplayed.map((data)=>{
         return data.product_hsn_code;
     });
