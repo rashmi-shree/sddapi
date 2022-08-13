@@ -399,6 +399,7 @@ router.put('/updatekarnatakagstratesfromdealers', (req, res)=>{
     let customer_reference_no = reqdata.rowdatadisplayed.map((data)=>{
         return data.customer_reference_no.toString();
     });
+    console.log("extended_discount", extended_discount);
     let finalquery = "";
     let q3 = ``;
     let q6 = "";
@@ -424,17 +425,19 @@ router.put('/updatekarnatakagstratesfromdealers', (req, res)=>{
             }
             finalquery = q1 + q2 + q3 + q5 + q7 + q9 + q5 + q8 + q10 + q5 + "," + q4;
     }
-    db.query(finalquery,
-        (err, result)=>{
-            if(err){
-                res.send(err);
-                console.log(err);
-            }
-            else{
-                res.json(result);
-            }
-        }
-    )
+    console.log("finalquery", finalquery);
+
+    // db.query(finalquery,
+    //     (err, result)=>{
+    //         if(err){
+    //             res.send(err);
+    //             console.log(err);
+    //         }
+    //         else{
+    //             res.json(result);
+    //         }
+    //     }
+    // )
     // db.query(
     //     `update delivery_report_table d
     //     join product_details_table p
