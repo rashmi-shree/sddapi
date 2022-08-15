@@ -122,32 +122,57 @@ router.post('/addCustomerFollowUpData',(req,res)=>{
     console.log("phonenoalterone",phonenoalterone);
     console.log("phonenoaltertwo",phonenoaltertwo);
     db.query(
-                `insert into customer_follow_up_data 
-                (
-                    customer_reference_no, 
-                    enquiry_date, customer_name, customer_address, state, 
-                    phone_number, phone_number_alter_one, 
-                     phone_number_alter_two,final_status) values (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-                [
-                    customerReferenceNo,
-                    enquiryDate,
-                    customerName,
-                    customerAddress,
-                    statename,
-                    phoneno,
-                    phonenoalterone,
-                    phonenoaltertwo,
-                    finalStatus
-                ],
-                (err, result)=>{
-                    if(err){
-                        console.log(err);
-                    }
-                    else{
-                        res.json(result);
-                    }
-                }
-            )
+        `insert into customer_follow_up_data values ('?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?')`,
+        [
+            customerReferenceNo,
+            enquiryDate,
+            customerAddress,
+            phoneno,
+            '',
+            '',
+            finalStatus,
+            customerName,
+            statename,
+            phonenoalterone,
+            phonenoaltertwo,
+            ''
+        ],
+        (err, result)=>{
+            if(err){
+                console.log(err);
+            }
+            else{
+                res.json(result);
+            }
+        }
+    )
+    // db.query(
+    //             `insert into customer_follow_up_data 
+    //             (
+    //                 customer_reference_no, 
+    //                 enquiry_date, customer_name, customer_address, state, 
+    //                 phone_number, phone_number_alter_one, 
+    //                  phone_number_alter_two,final_status) values (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    //             [
+    //                 customerReferenceNo,
+    //                 enquiryDate,
+    //                 customerName,
+    //                 customerAddress,
+    //                 statename,
+    //                 phoneno,
+    //                 phonenoalterone,
+    //                 phonenoaltertwo,
+    //                 finalStatus
+    //             ],
+    //             (err, result)=>{
+    //                 if(err){
+    //                     console.log(err);
+    //                 }
+    //                 else{
+    //                     res.json(result);
+    //                 }
+    //             }
+    //         )
         }
 )
 router.post('/displayBookedCustomeerData',(req,res)=>{
