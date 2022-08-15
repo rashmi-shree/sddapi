@@ -110,14 +110,16 @@ router.put('/updatefinalstatuscustomertable',(req,res)=>{
 })
 router.post('/addCustomerFollowUpData',(req,res)=>{
     const reqdata = req.body.params;
+    const phonenoalterone = null;
+    const phonenoaltertwo = null;
     const customerReferenceNo = reqdata.customerReferenceNo;
     const enquiryDate = reqdata.enquiryDate;
     const customerName = reqdata.customerName;
     const customerAddress = reqdata.customerAddress;
     const statename = reqdata.statename.label;
     const phoneno = reqdata.phoneno;
-    const phonenoalterone = reqdata.phonenoalterone;
-    const phonenoaltertwo = reqdata.phonenoaltertwo;
+    phonenoalterone = reqdata.phonenoalterone;
+    phonenoaltertwo = reqdata.phonenoaltertwo;
     const finalStatus = reqdata.finalStatus;
     console.log("phonenoalterone",phonenoalterone);
     console.log("phonenoaltertwo",phonenoaltertwo);
