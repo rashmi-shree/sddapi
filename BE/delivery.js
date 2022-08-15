@@ -403,14 +403,21 @@ router.post('/addDeliveryData',(req,res)=>{
 //   const statecode = reqdata.statename.value; 
 //   const statename = reqdata.statename.label;
 //   const phone_number = reqdata.phone_number;
-//   const phone_number_alter_one = reqdata.phone_number_alter_one;
-//   const phone_number_alter_two = reqdata.phone_number_alter_two;
+  var phone_number_alter_one = reqdata.phone_number_alter_one;
+  var phone_number_alter_two = reqdata.phone_number_alter_two;
+  if (phone_number_alter_one.length == 0){
+    phone_number_alter_one = null;
+}
+if (phone_number_alter_two.length == 0){
+    phone_number_alter_two = null;
+}
 //   const product_hsn_code = reqdata.product_hsn_code;
   const product = reqdata.product;
 //   const quantity = reqdata.quantity;
 //   const customer_name = reqdata.customer_name;
   const size = product.length;
     let temp = [];
+    
     for (var i =0 ; i<size; i++){
         temp.push([
             reqdata.customerReferenceNo,
@@ -418,8 +425,8 @@ router.post('/addDeliveryData',(req,res)=>{
             reqdata.statename.label,
             reqdata.statename.value,
             reqdata.phone_number,
-            reqdata.phone_number_alter_one,
-            reqdata.phone_number_alter_two,
+            phone_number_alter_one,
+            phone_number_alter_two,
             reqdata.product_hsn_code[i],
             reqdata.product[i],
             reqdata.quantity[i],

@@ -127,8 +127,6 @@ router.post('/addCustomerFollowUpData',(req,res)=>{
     if (phonenoaltertwo.length == 0){
         phonenoaltertwo = null;
     }
-    console.log("phonenoalterone",phonenoalterone);
-    console.log("phonenoaltertwo",phonenoaltertwo);
     db.query(
                 `insert into customer_follow_up_data 
                 (
