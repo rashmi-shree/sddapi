@@ -122,7 +122,7 @@ router.post('/addCustomerFollowUpData',(req,res)=>{
     console.log("phonenoalterone",phonenoalterone);
     console.log("phonenoaltertwo",phonenoaltertwo);
     db.query(
-        `insert into customer_follow_up_data values ('?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?')`,
+        `insert into customer_follow_up_data values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
             customerReferenceNo,
             enquiryDate,
