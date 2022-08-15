@@ -119,6 +119,8 @@ router.post('/addCustomerFollowUpData',(req,res)=>{
     const phonenoalterone = reqdata.phonenoalterone;
     const phonenoaltertwo = reqdata.phonenoaltertwo;
     const finalStatus = reqdata.finalStatus;
+    console.log("phonenoalterone",phonenoalterone);
+    console.log("phonenoaltertwo",phonenoaltertwo);
     db.query(
                 `insert into customer_follow_up_data 
                 (
