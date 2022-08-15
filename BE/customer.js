@@ -129,7 +129,7 @@ router.post('/addCustomerFollowUpData',(req,res)=>{
             customerAddress,
             phoneno,
             '',
-            '',
+            null,
             finalStatus,
             customerName,
             statename,
