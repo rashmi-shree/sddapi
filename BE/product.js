@@ -250,8 +250,8 @@ router.put('/updateProductsDetailsProductDataIncrement',(req,res)=>{
     const quantity = reqdata.quantity;
     const delivery_status = reqdata.delivery_status;
     if (delivery_status == "Cancelled"){
-       var q1 = "UPDATE sdd.product_details_table SET stock = ( CASE ";
-       var q2 = `when product_name = ${product} then stock + ${quantity} end )`;
+       var q1 = `UPDATE sdd.product_details_table SET stock = ( CASE `;
+       var q2 = `when product_name = ${product} then (stock + ${quantity}) end )`;
        var finalquery = q1 + q2;
        db.query(finalquery,
             (err, result)=>{
