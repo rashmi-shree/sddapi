@@ -246,25 +246,29 @@ router.put('/updateProductsDetailsProductDataDecrement',(req,res)=>{
 router.put('/updateProductsDetailsProductDataIncrement',(req,res)=>{
     const reqdata = req.body.params.updaterowdata;
     console.log("hallelljah", reqdata);
-    var query1 = `UPDATE sdd.product_details_table SET stock = ( CASE `;
-    var query3 = "";
-    var query6 = ` ELSE  (stock) END )`;
-    query3 = `WHEN (product_name = "${reqdata.product}") THEN (stock + ${reqdata.quantity}) `;
-    // for(var i =0; i<reqdata.length; i++){
-    //     query3 += `WHEN (product_name = "${reqdata.product}") THEN (stock + ${reqdata[i].quantity}) `;
-    // }
-    finalquery = query1  + query3 + query6;
-    db.query(finalquery,
-        (err, result)=>{
-            if(err){
-                res.send(err);
-                console.log(err);
-            }
-            else{
-                res.json(result);
-            }
-        }
-    )
+    const product = reqdata.product;
+    const quantity = reqdata.quantity;
+
+    console.log("hi", product, quantity);
+    // var query1 = `UPDATE sdd.product_details_table SET stock = ( CASE `;
+    // var query3 = "";
+    // var query6 = ` ELSE  (stock) END )`;
+    // query3 = `WHEN (product_name = "${reqdata.product}") THEN (stock + ${reqdata.quantity}) `;
+    // // for(var i =0; i<reqdata.length; i++){
+    // //     query3 += `WHEN (product_name = "${reqdata.product}") THEN (stock + ${reqdata[i].quantity}) `;
+    // // }
+    // finalquery = query1  + query3 + query6;
+    // db.query(finalquery,
+    //     (err, result)=>{
+    //         if(err){
+    //             res.send(err);
+    //             console.log(err);
+    //         }
+    //         else{
+    //             res.json(result);
+    //         }
+    //     }
+    // )
 })
 router.post('/getquantitybasedonproductname',(req,res)=>{
     const reqdata = req.body.params;
