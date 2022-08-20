@@ -253,17 +253,18 @@ router.put('/updateProductsDetailsProductDataIncrement',(req,res)=>{
        var q1 = `UPDATE sdd.product_details_table p SET p.stock = ( CASE `;
        var q2 = `when p.product_name = ${product} then (p.stock + ${quantity}) end )`;
        var finalquery = q1 + q2;
-       db.query(finalquery,
-            (err, result)=>{
-                if(err){
-                    res.send(err);
-                    console.log(err);
-                }
-                else{
-                    res.json(result);
-                }
-            }
-        )
+       console.log("fina", finalquery);
+    //    db.query(finalquery,
+    //         (err, result)=>{
+    //             if(err){
+    //                 res.send(err);
+    //                 console.log(err);
+    //             }
+    //             else{
+    //                 res.json(result);
+    //             }
+    //         }
+    //     )
     }
     // var query1 = `UPDATE sdd.product_details_table SET stock = ( CASE `;
     // var query3 = "";
