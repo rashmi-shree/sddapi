@@ -787,47 +787,15 @@ router.put('/updateDeliveryDetails',(req,res)=>{
     const product = reqdata.product;
     const quantity = reqdata.quantity;
     if(balance_amount == 0){
-        db.query(
-        `update delivery_report_table set 
-        customer_name=?,customer_address= ?,
-        phone_number = ?, phone_number_alter_one = ?,
-        phone_number_alter_two = ?,
-        balance_amount = ?,payment_status= ?,
-        product_sl_no=?,
-        delivery_status =?, quantity =?
-        where customer_reference_no = ? and product = ?`,
-        [
-            customer_name,
-            customer_address,
-            phone_number,
-            phone_number_alter_one,
-            phone_number_alter_two,
-            balance_amount,
-            "Paid",
-            product_sl_no,
-            delivery_status,
-            quantity-quantity,
-            customer_reference_no,
-            product
-        ],
-            (err, result)=>{
-                if(err){
-                    console.log(err);
-                }
-                else{
-                    res.json(result);
-                }
-            }
-        )
-    }else{
-        db.query(
+        if (delivery_status != "Cancelled"){
+            db.query(
             `update delivery_report_table set 
             customer_name=?,customer_address= ?,
             phone_number = ?, phone_number_alter_one = ?,
             phone_number_alter_two = ?,
             balance_amount = ?,payment_status= ?,
-            product_sl_no =?,
-            delivery_status =?, quantity =?
+            product_sl_no=?,
+            delivery_status =?
             where customer_reference_no = ? and product = ?`,
             [
                 customer_name,
@@ -836,10 +804,9 @@ router.put('/updateDeliveryDetails',(req,res)=>{
                 phone_number_alter_one,
                 phone_number_alter_two,
                 balance_amount,
-                "pending",
+                "Paid",
                 product_sl_no,
                 delivery_status,
-                quantity-quantity,
                 customer_reference_no,
                 product
             ],
@@ -852,6 +819,109 @@ router.put('/updateDeliveryDetails',(req,res)=>{
                     }
                 }
             )
+        }else if(delivery_status == "Cancelled"){
+            db.query(
+                `update delivery_report_table set 
+                customer_name=?,customer_address= ?,
+                phone_number = ?, phone_number_alter_one = ?,
+                phone_number_alter_two = ?,
+                balance_amount = ?,payment_status= ?,
+                product_sl_no=?,
+                delivery_status =?, quantity =?
+                where customer_reference_no = ? and product = ?`,
+                [
+                    customer_name,
+                    customer_address,
+                    phone_number,
+                    phone_number_alter_one,
+                    phone_number_alter_two,
+                    balance_amount,
+                    "Paid",
+                    product_sl_no,
+                    delivery_status,
+                    quantity-quantity,
+                    customer_reference_no,
+                    product
+                ],
+                    (err, result)=>{
+                        if(err){
+                            console.log(err);
+                        }
+                        else{
+                            res.json(result);
+                        }
+                    }
+                )
+        }
+    }else{
+        if(delivery_status != "Cancelled"){
+            db.query(
+                `update delivery_report_table set 
+                customer_name=?,customer_address= ?,
+                phone_number = ?, phone_number_alter_one = ?,
+                phone_number_alter_two = ?,
+                balance_amount = ?,payment_status= ?,
+                product_sl_no =?,
+                delivery_status =?
+                where customer_reference_no = ? and product = ?`,
+                [
+                    customer_name,
+                    customer_address,
+                    phone_number,
+                    phone_number_alter_one,
+                    phone_number_alter_two,
+                    balance_amount,
+                    "pending",
+                    product_sl_no,
+                    delivery_status,
+                    customer_reference_no,
+                    product
+                ],
+                    (err, result)=>{
+                        if(err){
+                            console.log(err);
+                        }
+                        else{
+                            res.json(result);
+                        }
+                    }
+                )
+        }
+        else if (delivery_status == "Cancelled"){
+            db.query(
+                `update delivery_report_table set 
+                customer_name=?,customer_address= ?,
+                phone_number = ?, phone_number_alter_one = ?,
+                phone_number_alter_two = ?,
+                balance_amount = ?,payment_status= ?,
+                product_sl_no =?,
+                delivery_status =?, quantity =?
+                where customer_reference_no = ? and product = ?`,
+                [
+                    customer_name,
+                    customer_address,
+                    phone_number,
+                    phone_number_alter_one,
+                    phone_number_alter_two,
+                    balance_amount,
+                    "pending",
+                    product_sl_no,
+                    delivery_status,
+                    quantity-quantity,
+                    customer_reference_no,
+                    product
+                ],
+                    (err, result)=>{
+                        if(err){
+                            console.log(err);
+                        }
+                        else{
+                            res.json(result);
+                        }
+                    }
+                )
+        }
+       
     }
 })
 module.exports = router;
