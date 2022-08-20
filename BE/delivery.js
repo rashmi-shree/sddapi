@@ -784,6 +784,7 @@ router.put('/updateDeliveryDetails',(req,res)=>{
     const product_sl_no = reqdata.product_sl_no;
     const delivery_status = reqdata.delivery_status;
     const customer_reference_no = reqdata.customer_reference_no;
+    const product = reqdata.product;
     if(balance_amount == 0){
         db.query(
         `update delivery_report_table set 
@@ -793,7 +794,7 @@ router.put('/updateDeliveryDetails',(req,res)=>{
         balance_amount = ?,payment_status= ?,
         product_sl_no=?,
         delivery_status =?
-        where customer_reference_no = ?`,
+        where customer_reference_no = ? and product = ?`,
         [
             customer_name,
             customer_address,
@@ -804,7 +805,8 @@ router.put('/updateDeliveryDetails',(req,res)=>{
             "Paid",
             product_sl_no,
             delivery_status,
-            customer_reference_no
+            customer_reference_no,
+            product
         ],
             (err, result)=>{
                 if(err){
@@ -824,7 +826,7 @@ router.put('/updateDeliveryDetails',(req,res)=>{
             balance_amount = ?,payment_status= ?,
             product_sl_no =?,
             delivery_status =?
-            where customer_reference_no = ?`,
+            where customer_reference_no = ? and product = ?`,
             [
                 customer_name,
                 customer_address,
@@ -835,7 +837,8 @@ router.put('/updateDeliveryDetails',(req,res)=>{
                 "pending",
                 product_sl_no,
                 delivery_status,
-                customer_reference_no
+                customer_reference_no,
+                product
             ],
                 (err, result)=>{
                     if(err){
