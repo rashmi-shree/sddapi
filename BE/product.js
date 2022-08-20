@@ -248,8 +248,23 @@ router.put('/updateProductsDetailsProductDataIncrement',(req,res)=>{
     console.log("hallelljah", reqdata);
     const product = reqdata.product;
     const quantity = reqdata.quantity;
-
-    console.log("hi", product, quantity);
+    const delivery_status = reqdata.delivery_status;
+    if (delivery_status == "Cancelled"){
+       var q1 = "UPDATE sdd.product_details_table SET stock = ( CASE ";
+       var q2 = `when product_name = ${product} then stock + ${quantity} end )`;
+       var finalquery = q1 + q2;
+       db.query(finalquery,
+            (err, result)=>{
+                if(err){
+                    res.send(err);
+                    console.log(err);
+                }
+                else{
+                    res.json(result);
+                }
+            }
+        )
+    }
     // var query1 = `UPDATE sdd.product_details_table SET stock = ( CASE `;
     // var query3 = "";
     // var query6 = ` ELSE  (stock) END )`;
@@ -258,17 +273,7 @@ router.put('/updateProductsDetailsProductDataIncrement',(req,res)=>{
     // //     query3 += `WHEN (product_name = "${reqdata.product}") THEN (stock + ${reqdata[i].quantity}) `;
     // // }
     // finalquery = query1  + query3 + query6;
-    // db.query(finalquery,
-    //     (err, result)=>{
-    //         if(err){
-    //             res.send(err);
-    //             console.log(err);
-    //         }
-    //         else{
-    //             res.json(result);
-    //         }
-    //     }
-    // )
+    
 })
 router.post('/getquantitybasedonproductname',(req,res)=>{
     const reqdata = req.body.params;
