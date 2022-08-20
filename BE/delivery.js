@@ -821,7 +821,7 @@ router.put('/updateDeliveryDetails',(req,res)=>{
             customer_name=?,customer_address= ?,
             phone_number = ?, phone_number_alter_one = ?,
             phone_number_alter_two = ?,
-            balance_amount = ?,
+            balance_amount = ?,payment_status= ?,
             product_sl_no =?,
             delivery_status =?
             where customer_reference_no = ?`,
@@ -832,6 +832,7 @@ router.put('/updateDeliveryDetails',(req,res)=>{
                 phone_number_alter_one,
                 phone_number_alter_two,
                 balance_amount,
+                "pending",
                 product_sl_no,
                 delivery_status,
                 customer_reference_no
