@@ -253,7 +253,8 @@ router.put('/updateProductsDetailsProductDataIncrement',(req,res)=>{
        var q1 = `UPDATE sdd.product_details_table p SET p.stock = ( CASE `;
        var q2 = `when product_name = "${product}" then stock + ${quantity} `;
        var q3 = ` end )`;
-       var finalquery = q1 + q2 + q3;
+       var q4 = `where product_name = "${product}"`;
+       var finalquery = q1 + q2 + q3 + q4;
        console.log("fina", finalquery);
        db.query(finalquery,
             (err, result)=>{
