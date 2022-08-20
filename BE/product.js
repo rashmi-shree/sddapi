@@ -223,7 +223,7 @@ router.put('/updateProductsDetails',(req,res)=>{
     )
 })
 router.put('/updateProductsDetailsProductData',(req,res)=>{
-    const reqdata = req.body.params.rowdatadisplayed;
+    const reqdata = req.body.params;
     console.log("hallalujah", reqdata);
     var query1 = `UPDATE sdd.product_details_table SET stock = ( CASE `;
     var query3 = "";
