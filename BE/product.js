@@ -251,21 +251,21 @@ router.put('/updateProductsDetailsProductDataIncrement',(req,res)=>{
     const delivery_status = reqdata.delivery_status;
     if (delivery_status == "Cancelled"){
        var q1 = `UPDATE sdd.product_details_table p SET p.stock = ( CASE `;
-       var q2 = `when (p.product_name = "${product}") then stock + ${quantity}`;
-       var q3 = `end )`;
+       var q2 = `when product_name = "${product}" then stock + ${quantity} `;
+       var q3 = ` end )`;
        var finalquery = q1 + q2 + q3;
        console.log("fina", finalquery);
-    //    db.query(finalquery,
-    //         (err, result)=>{
-    //             if(err){
-    //                 res.send(err);
-    //                 console.log(err);
-    //             }
-    //             else{
-    //                 res.json(result);
-    //             }
-    //         }
-    //     )
+       db.query(finalquery,
+            (err, result)=>{
+                if(err){
+                    res.send(err);
+                    console.log(err);
+                }
+                else{
+                    res.json(result);
+                }
+            }
+        )
     }
     // var query1 = `UPDATE sdd.product_details_table SET stock = ( CASE `;
     // var query3 = "";
