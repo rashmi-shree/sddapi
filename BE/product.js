@@ -228,7 +228,7 @@ router.put('/updateProductsDetailsProductData',(req,res)=>{
     var query3 = "";
     var query6 = ` ELSE  (stock) END )`;
     for(var i =0; i<reqdata.length; i++){
-        query3 += `WHEN (product_name = "${reqdata[i].productname}") THEN (stock - ${reqdata[i].quantity}) `;
+        query3 += `WHEN (product_name = "${reqdata[i].product}") THEN (stock - ${reqdata[i].quantity}) `;
     }
     finalquery = query1  + query3 + query6;
     db.query(finalquery,
