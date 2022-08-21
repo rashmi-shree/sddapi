@@ -108,6 +108,26 @@ router.put('/updatefinalstatuscustomertable',(req,res)=>{
         }
     )
 })
+router.put('/updatefinalstatuscustomertablepurchased',(req,res)=>{
+    const reqdata = req.body.params;
+   const customer_reference_no = reqdata.customer_reference_no;
+    db.query(
+    `update customer_follow_up_data set 
+    final_status = ? where customer_reference_no=?`,
+    [
+        Purchased,
+        customer_reference_no
+    ],
+        (err, result)=>{
+            if(err){
+                console.log(err);
+            }
+            else{
+                res.json(result);
+            }
+        }
+    )
+})
 router.post('/addCustomerFollowUpData',(req,res)=>{
     const reqdata = req.body.params;
     var phonenoalterone = 'null';
