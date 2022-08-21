@@ -68,6 +68,24 @@ router.post('/getpurchasestatus',(req,res)=>{
         }
     )
 })
+router.post('/getbookingstatus',(req,res)=>{
+    const reqdata = req.body.params;
+    const customer_reference_no = reqdata.e;
+    db.query(
+        `select distinct booking_status from 
+        delivery_report_table where 
+        customer_reference_no = ?`,
+        [customer_reference_no],
+        (err, result)=>{
+            if(err){
+                console.log(err);
+            }
+            else{
+                res.json(result);
+            }
+        }
+    )
+})
 
 router.post('/getalldataofcustomer',(req,res)=>{
     const reqdata = req.body.params;
@@ -126,6 +144,27 @@ router.put('/updatepurchasestatusofdeliverytable',(req,res)=>{
     db.query(
     `update delivery_report_table set 
     purchase_status= ?
+    where customer_reference_no = ?`,
+    [
+        1,
+        customer_reference_no
+    ],
+        (err, result)=>{
+            if(err){
+                console.log(err);
+            }
+            else{
+                res.json(result);
+            }
+        }
+    )
+})
+router.put('/updatebookingstatusofdeliverytable',(req,res)=>{
+    const reqdata = req.body.params;
+    const customer_reference_no = reqdata.customer_reference_no;
+    db.query(
+    `update delivery_report_table set 
+    booking_status= ?
     where customer_reference_no = ?`,
     [
         1,
