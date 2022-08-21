@@ -245,7 +245,6 @@ router.put('/updateProductsDetailsProductDataDecrement',(req,res)=>{
 })
 router.put('/updateProductsDetailsProductDataIncrement',(req,res)=>{
     const reqdata = req.body.params.updaterowdata;
-    console.log("hallelljah", reqdata);
     const product = reqdata.product;
     const quantity = reqdata.quantity;
     const delivery_status = reqdata.delivery_status;
@@ -255,7 +254,6 @@ router.put('/updateProductsDetailsProductDataIncrement',(req,res)=>{
        var q3 = ` end )`;
        var q4 = `where product_name = "${product}"`;
        var finalquery = q1 + q2 + q3 + q4;
-       console.log("fina", finalquery);
        db.query(finalquery,
             (err, result)=>{
                 if(err){
