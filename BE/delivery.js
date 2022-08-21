@@ -10,7 +10,9 @@ const db = mysql.createConnection({
     database : 'sdd'
 });
 router.get('/getInvoices',(req, res)=>{
-    db.query(`select distinct delivery_date, invoice_no, customer_name 
+    db.query(`select distinct delivery_date, invoice_no, 
+    customer_name, phone_number, phone_number_alter_one,
+    phone_number_alter_two 
     from delivery_report_table`,
     (err,result)=>{
         if(err){
