@@ -9,25 +9,9 @@ const db = mysql.createConnection({
     password : 'iwbFR$$0102',
     database : 'sdd'
 });
-
-router.post('/getInvoices',(req, res)=>{
-    const reqdata = req.body.params;
-    const phone_number = reqdata.searchData;
-    const invoice_no = reqdata.searchData;
-    const customer_name = reqdata.searchData;
-    const phone_number_alter_one = reqdata.searchData;
-    const phone_number_alter_two = reqdata.searchData;
+router.get('/getInvoices',(req, res)=>{
     db.query(`select distinct delivery_date, invoice_no, customer_name 
-    from delivery_report_table where phone_number = ? or 
-    invoice_no = ? or customer_name = ? or phone_number_alter_one = ?
-    or phone_number_alter_two = ?`,
-    [
-        phone_number,
-        invoice_no,
-        customer_name,
-        phone_number_alter_one,
-        phone_number_alter_two
-    ],
+    from delivery_report_table`,
     (err,result)=>{
         if(err){
             console.log(err);
