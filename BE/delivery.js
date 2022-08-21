@@ -13,7 +13,7 @@ router.get('/getInvoices',(req, res)=>{
     db.query(`select distinct delivery_date, invoice_no, 
     customer_name, phone_number, phone_number_alter_one,
     phone_number_alter_two 
-    from delivery_report_table`,
+    from delivery_report_table where invoice_no IS NOT NULL`,
     (err,result)=>{
         if(err){
             console.log(err);
