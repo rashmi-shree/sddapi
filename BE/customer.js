@@ -115,7 +115,7 @@ router.put('/updatefinalstatuscustomertablepurchased',(req,res)=>{
     `update customer_follow_up_data set 
     final_status = ? where customer_reference_no=?`,
     [
-        Purchased,
+        "Purchased",
         customer_reference_no
     ],
         (err, result)=>{
