@@ -141,6 +141,12 @@ router.post('/addCustomerFollowUpData',(req,res)=>{
     phonenoalterone = reqdata.phonenoalterone;
     phonenoaltertwo = reqdata.phonenoaltertwo;
     const finalStatus = reqdata.finalStatus;
+
+    if (customerName.length == 0 || customerAddress.length == 0 ||
+        phoneno.length == 0 ){
+
+        res.json({"error":"Please Enter All Important fields"});
+      }
     if (phonenoalterone.length == 0){
         phonenoalterone = null;
     }
