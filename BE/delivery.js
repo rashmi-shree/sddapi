@@ -436,10 +436,7 @@ router.post('/addDeliveryData',(req,res)=>{
 //     phone_number.length == 0 ){
 //     return (res.json({"error":"Please Enter All Important fields"}));
 //   }
-  if (customerName == undefined || customerAddress.length == 0 ||
-        phone_number.length == 0){
-    return (res.json({"error":"Please Enter All Important fields"}));
-  }
+
 
   if (phone_number_alter_one.length == 0){
     phone_number_alter_one = null;
@@ -449,6 +446,10 @@ if (phone_number_alter_two.length == 0){
 }
 //   const product_hsn_code = reqdata.product_hsn_code;
   const product = reqdata.product;
+  if (customerName == undefined || customerAddress.length == 0 ||
+    phone_number.length == 0 || product.length == 0){
+return (res.json({"error":"Please Enter All Important fields"}));
+}
 //   const quantity = reqdata.quantity;
 //   const customer_name = reqdata.customer_name;
   const size = product.length;
