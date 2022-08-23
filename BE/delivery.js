@@ -424,12 +424,15 @@ router.put ('/updateotherstatesgstrates', (req, res)=>{
 router.post('/addDeliveryData',(req,res)=>{
     const reqdata = req.body.params;
 //     const customerReferenceNo = reqdata.customerReferenceNo;
-//   const customerAddress = reqdata.customerAddress;
+  const customerAddress = reqdata.customerAddress;
 //   const statecode = reqdata.statename.value; 
 //   const statename = reqdata.statename.label;
 //   const phone_number = reqdata.phone_number;
   var phone_number_alter_one = reqdata.phone_number_alter_one;
   var phone_number_alter_two = reqdata.phone_number_alter_two;
+  if (customerAddress.length == 0){
+    res.send("please enter");
+  }
   if (phone_number_alter_one.length == 0){
     phone_number_alter_one = null;
 }
