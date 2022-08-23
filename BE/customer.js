@@ -144,7 +144,7 @@ router.post('/addCustomerFollowUpData',(req,res)=>{
 
     if (customerName.length == 0 || customerAddress.length == 0 ||
         phoneno.length == 0 ){
-        res.json({"error":"Please Enter All Important fields"});
+        return (res.json({"error":"Please Enter All Important fields"}));
       }
     if (phonenoalterone.length == 0){
         phonenoalterone = null;
