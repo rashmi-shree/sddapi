@@ -432,8 +432,11 @@ router.post('/addDeliveryData',(req,res)=>{
   var phone_number_alter_one = reqdata.phone_number_alter_one;
   var phone_number_alter_two = reqdata.phone_number_alter_two;
 
-  if (customerName.length == 0 || customerAddress.length == 0 ||
-    phone_number.length == 0 ){
+//   if (customerName.length == 0 || customerAddress.length == 0 ||
+//     phone_number.length == 0 ){
+//     return (res.json({"error":"Please Enter All Important fields"}));
+//   }
+  if (customerName == undefined){
     return (res.json({"error":"Please Enter All Important fields"}));
   }
 
