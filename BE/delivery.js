@@ -423,20 +423,11 @@ router.put ('/updateotherstatesgstrates', (req, res)=>{
 })
 router.post('/addDeliveryData',(req,res)=>{
     const reqdata = req.body.params;
-//     const customerReferenceNo = reqdata.customerReferenceNo;
   const customerAddress = reqdata.customerAddress;
   const customerName = reqdata.customerName;
-//   const statecode = reqdata.statename.value; 
-//   const statename = reqdata.statename.label;
   const phone_number = reqdata.phone_number;
   var phone_number_alter_one = reqdata.phone_number_alter_one;
   var phone_number_alter_two = reqdata.phone_number_alter_two;
-
-//   if (customerName.length == 0 || customerAddress.length == 0 ||
-//     phone_number.length == 0 ){
-//     return (res.json({"error":"Please Enter All Important fields"}));
-//   }
-
 
   if (phone_number_alter_one.length == 0){
     phone_number_alter_one = null;
@@ -444,14 +435,11 @@ router.post('/addDeliveryData',(req,res)=>{
 if (phone_number_alter_two.length == 0){
     phone_number_alter_two = null;
 }
-//   const product_hsn_code = reqdata.product_hsn_code;
   const product = reqdata.product;
   if (customerName == undefined || customerAddress.length == 0 ||
     phone_number.length == 0 || product.length == 0){
 return (res.json({"error":"Please Enter All Important fields"}));
 }
-//   const quantity = reqdata.quantity;
-//   const customer_name = reqdata.customer_name;
   const size = product.length;
     let temp = [];
     
@@ -470,11 +458,6 @@ return (res.json({"error":"Please Enter All Important fields"}));
             reqdata.customer_name
         ])
     }
-    // if(state1.length != 0){
-    // }
-    // else if (state2.length != 0 && state1.length != 0){
-     
-    // }
         db.query(
             `insert into delivery_report_table 
             (   
