@@ -436,10 +436,6 @@ if (phone_number_alter_two.length == 0){
     phone_number_alter_two = null;
 }
   const product = reqdata.product;
-  if (customerName == undefined || customerAddress.length == 0 ||
-    phone_number.length == 0 || product.length == 0){
-return (res.json({"error":"Please Enter All Important fields"}));
-}
   const size = product.length;
     let temp = [];
     
