@@ -423,6 +423,7 @@ router.put ('/updateotherstatesgstrates', (req, res)=>{
 })
 router.post('/addDeliveryData',(req,res)=>{
     const reqdata = req.body.params;
+    console.log("reqdata", reqdata);
   const customerAddress = reqdata.customerAddress;
   const customerName = reqdata.customerName;
   const phone_number = reqdata.phone_number;
@@ -451,7 +452,8 @@ if (phone_number_alter_two.length == 0){
             reqdata.product_hsn_code[i],
             reqdata.product[i],
             reqdata.quantity[i],
-            reqdata.customer_name
+            reqdata.customer_name,
+            reqdata.owner_company
         ])
     }
         db.query(
@@ -467,7 +469,8 @@ if (phone_number_alter_two.length == 0){
                 product_hsn_code,
                 product,
                 quantity,
-                customer_name
+                customer_name,
+                owner_company
             ) values ?`,
             [temp],
          (err, result)=>
