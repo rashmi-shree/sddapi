@@ -57,7 +57,8 @@ router.get('/displayProductDetailsData',(req,res)=>{
     )
 })
 router.post('/displayProductDetailsDataforcombobox',(req,res)=>{
-    const selectedowner = req.body.selectedowner;
+    const selectedowner = req.body.params;
+    console.log(selectedowner);
     db.query(
         `select * from product_details_table where stock > 0
         and owner_company = ?`,
