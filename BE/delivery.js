@@ -30,9 +30,10 @@ router.post('/getDeliveryReportData', (req,res)=>{
     const invoice_no = reqdata.invoiceNo;
     const customer_reference_no = reqdata.customer_reference_no;
     db.query(
-        `select * from delivery_report_table, product_details_table
-         where phone_number = ? or customer_name = ?
-        or invoice_no = ? or customer_reference_no = ?`,
+        `select * from delivery_report_table d, product_details_table p
+        where d.product_hsn_code = p.product_hsn_code
+         and ( phone_number = ? or customer_name = ?
+        or invoice_no = ? or customer_reference_no = ? )`,
         [
             phoneno,
             customer_name,
