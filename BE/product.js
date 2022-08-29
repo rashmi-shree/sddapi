@@ -228,6 +228,7 @@ router.put('/updateProductsDetails',(req,res)=>{
 })
 router.put('/updateProductsDetailsProductDataDecrement',(req,res)=>{
     const reqdata = req.body.rowdatadisplayed;
+    console.log("hallelua", reqdata);
     var query1 = `UPDATE sdd.product_details_table SET stock = ( CASE `;
     var query3 = "";
     var query6 = ` ELSE  (stock) END )`;
@@ -235,17 +236,18 @@ router.put('/updateProductsDetailsProductDataDecrement',(req,res)=>{
         query3 += `WHEN (product_name = "${reqdata[i].product}") THEN (stock - ${reqdata[i].quantity}) `;
     }
     finalquery = query1  + query3 + query6;
-    db.query(finalquery,
-        (err, result)=>{
-            if(err){
-                res.send(err);
-                console.log(err);
-            }
-            else{
-                res.json(result);
-            }
-        }
-    )
+    console.log("final query",finalquery);
+    // db.query(finalquery,
+    //     (err, result)=>{
+    //         if(err){
+    //             res.send(err);
+    //             console.log(err);
+    //         }
+    //         else{
+    //             res.json(result);
+    //         }
+    //     }
+    // )
 })
 router.put('/updateProductsDetailsProductDataIncrement',(req,res)=>{
     const reqdata = req.body.params.updaterowdata;
