@@ -237,17 +237,17 @@ router.put('/updateProductsDetailsProductDataDecrement',(req,res)=>{
     }
     finalquery = query1  + query3 + query6;
     console.log("final query",finalquery);
-    // db.query(finalquery,
-    //     (err, result)=>{
-    //         if(err){
-    //             res.send(err);
-    //             console.log(err);
-    //         }
-    //         else{
-    //             res.json(result);
-    //         }
-    //     }
-    // )
+    db.query(finalquery,
+        (err, result)=>{
+            if(err){
+                res.send(err);
+                console.log(err);
+            }
+            else{
+                res.json(result);
+            }
+        }
+    )
 })
 router.put('/updateProductsDetailsProductDataIncrement',(req,res)=>{
     const reqdata = req.body.params.updaterowdata;
