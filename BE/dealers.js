@@ -79,7 +79,7 @@ router.post('/insertdealersdataintodeliverytable',(req,res)=>{
     })
     const customer_name = reqdata.dealersdata.enterprise_name;
     const state = reqdata.state.label;
-    const state_code = reqdata.state_code.value;
+    const state_code = reqdata.state.value;
     const po_number = reqdata.changed_data.po_number;
     const pan_number = reqdata.changed_data.pan_number;
     const vehicle_number = reqdata.changed_data.vehicle_number;
