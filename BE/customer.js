@@ -200,6 +200,7 @@ router.post('/displayBookedCustomeerData',(req,res)=>{
 })
 router.post('/insertdealerscustomertable',(req,res)=>{
     const reqdata = req.body.params;
+    console.log("hiiii", reqdata);
     const customer_reference_no = reqdata.customer_reference_no;
     const customer_address = reqdata.dealersdata.enterprise_address;
     const phone_number = reqdata.dealersdata.proprietor_phone_number;
