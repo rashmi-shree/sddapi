@@ -62,7 +62,6 @@ router.post('/getDealersDetailsData', (req,res)=>{
 })
 router.post('/insertdealersdataintodeliverytable',(req,res)=>{
     const reqdata = req.body.params;
-    console.log("reqdata", reqdata);
     const customer_reference_no = reqdata.customer_reference_no;
     const invoice_no = reqdata.invoice_no;
     const customer_address = reqdata.dealersdata.enterprise_address;
@@ -78,8 +77,8 @@ router.post('/insertdealersdataintodeliverytable',(req,res)=>{
         return data.quantity;
     })
     const customer_name = reqdata.dealersdata.enterprise_name;
-    const state = reqdata.state;
-    const state_code = reqdata.state_code;
+    const state = reqdata.state.label;
+    const state_code = reqdata.state_code.value;
     const po_number = reqdata.changed_data.po_number;
     const pan_number = reqdata.changed_data.pan_number;
     const vehicle_number = reqdata.changed_data.vehicle_number;

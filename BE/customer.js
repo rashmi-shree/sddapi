@@ -200,13 +200,11 @@ router.post('/displayBookedCustomeerData',(req,res)=>{
 })
 router.post('/insertdealerscustomertable',(req,res)=>{
     const reqdata = req.body.params;
-    console.log("hiiii", reqdata);
     const customer_reference_no = reqdata.customer_reference_no;
     const customer_address = reqdata.dealersdata.enterprise_address;
     const phone_number = reqdata.dealersdata.proprietor_phone_number;
     const customer_name = reqdata.dealersdata.enterprise_name;
     const state = reqdata.state.label;
-    console.log("jalupanea", state);
     const phone_number_alter_one = reqdata.changed_data.phone_number_alter_one;
     const phone_number_alter_two = reqdata.changed_data.phone_number_alter_two;
     db.query(
