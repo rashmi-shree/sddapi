@@ -424,7 +424,6 @@ router.put ('/updateotherstatesgstrates', (req, res)=>{
 })
 router.post('/addDeliveryData',(req,res)=>{
     const reqdata = req.body.params;
-    console.log("reqdata", reqdata);
   const customerAddress = reqdata.customerAddress;
   const customerName = reqdata.customerName;
   const phone_number = reqdata.phone_number;

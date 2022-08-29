@@ -11,7 +11,6 @@ const db = mysql.createConnection({
 });
 router.put('/updaterateofdeliverytableonbook',(req,res)=>{
     const reqdata = req.body.params.data;
-    console.log("reqdata", reqdata);
     let product_hsn_code = reqdata.map((data)=>{
         return data.product_hsn_code;
     })
@@ -349,7 +348,6 @@ router.post('/downloadinvoicedisplayedastable',(req,res)=>{
 })
 router.post('/calculaterateofdeliveryofdealers',(req,res)=>{
     const reqdata = req.body.params;
-    console.log("hiiiii", reqdata);
     let hsn_codes = reqdata.rowdatadisplayed.map((data)=>{
         return data.product_hsn_code;
     });
@@ -377,7 +375,6 @@ router.post('/calculaterateofdeliveryofdealers',(req,res)=>{
             let midquerystring1 = q2 + q3 + q5;
             finalquery = q1 + midquerystring1 + q4;
     }
-    console.log("query", finalquery);
     db.query(finalquery,
         (err, result)=>{
             if(err){
@@ -401,7 +398,6 @@ router.put('/updatekarnatakagstratesfromdealers', (req, res)=>{
     let customer_reference_no = reqdata.rowdatadisplayed.map((data)=>{
         return data.customer_reference_no.toString();
     });
-    console.log("extended_discount", extended_discount);
     let finalquery = "";
     let q3 = ``;
     let q6 = "";
