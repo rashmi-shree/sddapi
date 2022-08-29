@@ -84,6 +84,7 @@ router.post('/insertdealersdataintodeliverytable',(req,res)=>{
     const pan_number = reqdata.changed_data.pan_number;
     const vehicle_number = reqdata.changed_data.vehicle_number;
     const place_of_supply = reqdata.changed_data.place_of_supply;
+    const owner_company = reqdata.owner_company;
     const phone_number_alter_one = reqdata.changed_data.phone_number_alter_one;
     const phone_number_alter_two = reqdata.changed_data.phone_number_alter_two;
     var date1 = new Date();
@@ -113,7 +114,8 @@ router.post('/insertdealersdataintodeliverytable',(req,res)=>{
             phone_number_alter_one,
             phone_number_alter_two,
             booked_date,
-            delivery_status
+            delivery_status,
+            owner_company
         ])
     }
     db.query(
@@ -137,7 +139,8 @@ router.post('/insertdealersdataintodeliverytable',(req,res)=>{
             phone_number_alter_one,
             phone_number_alter_two,
             booked_date,
-            delivery_status
+            delivery_status,
+            owner_company
         ) values ?`,
         [temp],
      (err, result)=>
