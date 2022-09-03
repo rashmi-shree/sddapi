@@ -196,6 +196,7 @@ router.put('/updateProductsDetails',(req,res)=>{
     const reqdata = req.body.params.updaterowdata;
     const product_hsn_code = reqdata.product_hsn_code;
     const product_name = reqdata.product_name;
+    const owner_company = reqdata.owner_company;
     const product_description = reqdata.product_description;
     const unit_of_measure = reqdata.unit_of_measure;
     const rate_per_unit = reqdata.rate_per_unit;
@@ -205,11 +206,12 @@ router.put('/updateProductsDetails',(req,res)=>{
     const stock = reqdata.stock;
     db.query(
     `update product_details_table set 
-    product_name = ?, product_description= ?,
+    product_name = ?, owner_company = ? ,product_description= ?,
     unit_of_measure = ?, rate_per_unit= ?, gst_rate = ?,
     product_status = ?,stock = ?, discount = ? where product_hsn_code=?`,
     [
         product_name,
+        owner_company,
         product_description,
         unit_of_measure,
         rate_per_unit,
