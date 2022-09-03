@@ -146,6 +146,7 @@ router.post('/getProductDetailsData', (req,res)=>{
 router.post('/addProductData',(req,res)=>{
     const reqdata = req.body.params;
     const product_name = reqdata.data.product_name;
+    const owner_company = reqdata.data.owner_company;
     const product_hsn_code = reqdata.data.product_hsn_code;
     const product_description = reqdata.data.product_description;
     const unit_of_measure = reqdata.data.unit_of_measure;
@@ -159,6 +160,7 @@ router.post('/addProductData',(req,res)=>{
         (   
             product_hsn_code,
             product_name,
+            owner_company,
             product_description,
             unit_of_measure,
             rate_per_unit,
@@ -166,10 +168,11 @@ router.post('/addProductData',(req,res)=>{
             product_status,
             stock,
             discount
-        ) values (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
             product_hsn_code,
             product_name,
+            owner_company,
             product_description,
             unit_of_measure,
             rate_per_unit,
