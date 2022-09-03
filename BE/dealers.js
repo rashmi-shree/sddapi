@@ -216,15 +216,14 @@ router.put('/updateDealersDetails',(req,res)=>{
     `update dealers_details_table set 
     gstin_number = ?, enterprise_name= ?,
     enterprise_address = ?, proprietor_name= ?, proprietor_phone_number = ?,
-    gstin_status = ? where gstin_number=?`,
+    gstin_status = ? where gstin_number=gstin_number`,
     [
         gstin_number,
         enterprise_name,
         enterprise_address,
         proprietor_name,
         proprietor_phone_number,
-        gstin_status,
-        gstin_number
+        gstin_status
     ],
         (err, result)=>{
             if(err){
