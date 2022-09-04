@@ -134,18 +134,17 @@ router.post('/addCustomerFollowUpData',(req,res)=>{
     var phonenoaltertwo = 'null';
     const customerReferenceNo = reqdata.customerReferenceNo;
     const enquiryDate = reqdata.enquiryDate;
+    console.log("enquiryDate",enquiryDate);
     const customerName = reqdata.customerName;
     const customerAddress = reqdata.customerAddress;
     const statename = reqdata.statename.label;
     const phoneno = reqdata.phoneno;
-    phonenoalterone = reqdata.phonenoalterone;
-    phonenoaltertwo = reqdata.phonenoaltertwo;
     const finalStatus = reqdata.finalStatus;
-    if (phonenoalterone.length == 0){
-        phonenoalterone = null;
+    if (phonenoalterone.length != 0){
+        phonenoalterone = reqdata.phonenoalterone;
     }
-    if (phonenoaltertwo.length == 0){
-        phonenoaltertwo = null;
+    if (phonenoaltertwo.length != 0){
+        phonenoaltertwo = reqdata.phonenoaltertwo;
     }
     db.query(
                 `insert into customer_follow_up_data 
