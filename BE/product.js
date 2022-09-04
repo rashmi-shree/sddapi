@@ -193,17 +193,17 @@ router.post('/addProductData',(req,res)=>{
     )
 })
 router.put('/updateProductsDetails',(req,res)=>{
-    const reqdata = req.body.params.updaterowdata;
-    const product_hsn_code = reqdata.product_hsn_code;
-    const product_name = reqdata.product_name;
+    const reqdata = req.body.params;
+    const product_hsn_code = reqdata.data.product_hsn_code;
+    const product_name = reqdata.data.product_name;
     const owner_company = reqdata.selectedowner;
-    const product_description = reqdata.product_description;
-    const unit_of_measure = reqdata.unit_of_measure;
-    const rate_per_unit = reqdata.rate_per_unit;
-    const gst_rate = reqdata.gst_rate;
-    const product_status = reqdata.product_status;
-    const discount = reqdata.discount;
-    const stock = reqdata.stock;
+    const product_description = reqdata.data.product_description;
+    const unit_of_measure = reqdata.data.unit_of_measure;
+    const rate_per_unit = reqdata.data.rate_per_unit;
+    const gst_rate = reqdata.data.gst_rate;
+    const product_status = reqdata.data.product_status;
+    const discount = reqdata.data.discount;
+    const stock = reqdata.data.stock;
     db.query(
     `update product_details_table set 
     product_name = ?, owner_company = ? ,product_description= ?,
