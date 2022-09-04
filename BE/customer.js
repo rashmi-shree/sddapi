@@ -139,12 +139,14 @@ router.post('/addCustomerFollowUpData',(req,res)=>{
     const customerAddress = reqdata.customerAddress;
     const statename = reqdata.statename.label;
     const phoneno = reqdata.phoneno;
+    phonenoalterone = reqdata.phonenoalterone;
+    phonenoaltertwo = reqdata.phonenoaltertwo;
     const finalStatus = reqdata.finalStatus;
-    if (phonenoalterone.length != 0){
-        phonenoalterone = reqdata.phonenoalterone;
+    if (phonenoalterone.length == 0){
+        phonenoalterone = null;
     }
-    if (phonenoaltertwo.length != 0){
-        phonenoaltertwo = reqdata.phonenoaltertwo;
+    if (phonenoaltertwo.length == 0){
+        phonenoaltertwo = null;
     }
     db.query(
                 `insert into customer_follow_up_data 
