@@ -206,6 +206,9 @@ router.post('/insertdealerscustomertable',(req,res)=>{
     const customer_name = reqdata.dealersdata.enterprise_name;
     const state = reqdata.state.label;
     const phone_number_alter_one = reqdata.changed_data.phone_number_alter_one;
+    if (!phone_number_alter_one){
+        phone_number_alter_one = null
+    }
     const phone_number_alter_two = reqdata.changed_data.phone_number_alter_two;
     db.query(
         `insert into customer_follow_up_data 
