@@ -15,8 +15,8 @@ router.post('/login',(req,res)=>{
     const password = reqestData.password;
     db.query(`select username from users where username = ?`,
     [username],
-    (err,res)=>{
-        if (res.length>0){
+    (err,userresponse)=>{
+        if (userresponse.length>0){
             db.query(
                 `select username, password
                  from users where username = ? and password = ?`,
