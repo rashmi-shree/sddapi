@@ -13,18 +13,27 @@ router.post('/login',(req,res)=>{
     const reqestData = req.body.params.logindata;
     const username = reqestData.username;
     const password = reqestData.password;
-    db.query(
-        `select username, password
-         from users where username = ? and password = ?`,
-        [username, password],
-        (err, result)=>{
-            if (err){
-                console.log(err);
-            }else{
-                res.json(result);
-            }
+    db.query("select username from users where username = username",(err,res)=>{
+        if (res.length>0){
+            db.query(
+                `select username, password
+                 from users where username = ? and password = ?`,
+                [username, password],
+                (err, result)=>{
+                    if (err){
+                        // console.log(err);
+                        res.json({msg:"password incorrect", code:404})
+                    }else{
+                        res.json(result);
+                    }
+                }
+            );
         }
-    );
+        else{
+            res.json({msg:"user is not present", code:404});
+        }
+    })
+ 
 })
 
 module.exports = router;
