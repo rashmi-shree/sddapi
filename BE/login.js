@@ -22,7 +22,7 @@ router.post('/login',(req,res)=>{
                 (err, result)=>{
                     if (err){
                         // console.log(err);
-                        res.json({msg:"password incorrect", code:404})
+                        res.json({msg:"password incorrect", code:401})
                     }else{
                         res.json(result);
                     }
