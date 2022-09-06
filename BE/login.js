@@ -23,10 +23,15 @@ router.post('/login',(req,res)=>{
                 [username, password],
                 (err, result)=>{
                     if (err){
-                        // console.log(err);
-                        res.json({msg:"password incorrect", code:401})
+                        console.log(err);
+                        // res.json({msg:"password incorrect", code:401})
                     }else{
-                        res.json(result);
+                        if(result.length ){
+                            res.json(result);
+                        }
+                        else {
+                            res.json({msg:"password incorrect", code:401})
+                        }
                     }
                 }
             );
