@@ -13,7 +13,9 @@ router.post('/login',(req,res)=>{
     const reqestData = req.body.params.logindata;
     const username = reqestData.username;
     const password = reqestData.password;
-    db.query("select username from users where username = username",(err,res)=>{
+    db.query(`select username from users where username = ?`,
+    [username],
+    (err,res)=>{
         if (res.length>0){
             db.query(
                 `select username, password
