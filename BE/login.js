@@ -30,13 +30,16 @@ router.post('/login',(req,res)=>{
                             res.json(result);
                         }
                         else {
-                            res.json({msg:"password incorrect", code:401})
+                            res.json({msg:"Password Incorrect", code:401})
                         }
                     }
                 }
             );
         }
-        else{
+        else if (userresponse.length == 0){
+            res.json({msg:"Enter Credentials", code:404});
+        }
+        else {
             res.json({msg:"user is not present", code:404});
         }
     })
