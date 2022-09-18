@@ -209,6 +209,7 @@ router.post ('/getpurchasestatusfrom', (req, res)=>{
 })
 router.put('/updateDeliveryData',(req,res)=>{
     const reqdata = req.body.params;
+    console.log("hiii", reqdata);
     let extended_discount = reqdata.rowdatadisplayed.map((data)=>{
         return data.extended_discount;
     });
