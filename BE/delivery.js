@@ -211,6 +211,33 @@ router.put('/updateDeliveryData',(req,res)=>{
     const reqdata = req.body.params;
     console.log("hiii rowdatadisplayed", reqdata.rowdatadisplayed);
     console.log("hiii customerdata", reqdata.customerdata);
+    let owner_company = reqdata.customerdata.map((data)=>{
+        return data.owner_company;
+    });
+    let state = reqdata.customerdata.map((data)=>{
+        return data.statename.label;
+    });
+    let state_code = reqdata.customerdata.map((data)=>{
+        return data.statename.value;
+    });
+    let customer_name = reqdata.rowdatadisplayed.map((data)=>{
+        return data.customer_name;
+    });
+    let customer_address = reqdata.rowdatadisplayed.map((data)=>{
+        return data.customer_address;
+    });
+    let phone_number = reqdata.rowdatadisplayed.map((data)=>{
+        return data.phone_number;
+    });
+    let phone_number_alter_one = reqdata.rowdatadisplayed.map((data)=>{
+        return data.phone_number_alter_one;
+    });
+    let phone_number_alter_two = reqdata.rowdatadisplayed.map((data)=>{
+        return data.phone_number_alter_two;
+    });
+    let quantity = reqdata.rowdatadisplayed.map((data)=>{
+        return data.quantity;
+    });
     let extended_discount = reqdata.rowdatadisplayed.map((data)=>{
         return data.extended_discount;
     });
@@ -223,9 +250,12 @@ router.put('/updateDeliveryData',(req,res)=>{
     let payment_status = reqdata.rowdatadisplayed.map((data)=>{
         return data.payment_status;
     });
-    var myDate = new Date(new Date().getTime()+(5*24*60*60*1000));
-    var myDate1 = myDate.toISOString();
-    var requested_delivery_date = myDate1.substr(0,10);
+    let requested_delivery_date = reqdata.rowdatadisplayed.map((data)=>{
+        return data.requested_delivery_date;
+    });
+    // var myDate = new Date(new Date().getTime()+(5*24*60*60*1000));
+    // var myDate1 = myDate.toISOString();
+    // var requested_delivery_date = myDate1.substr(0,10);
     let date1 = new Date();
     date2 = date1.toISOString();
     var date2 = date2.substr(0, 10);
