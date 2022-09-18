@@ -212,15 +212,9 @@ router.put('/updateDeliveryData',(req,res)=>{
     console.log("hiii rowdatadisplayed", reqdata.rowdatadisplayed);
     console.log("hiii customerdata", reqdata.customerdata);
     console.log("hiii customerdata", reqdata.customerdata.statename.label);
-    // let owner_company = reqdata.customerdata.map((data)=>{
-    //     return data.owner_company;
-    // });
-    // let state = reqdata.customerdata.map((data)=>{
-    //     return data.statename.label;
-    // });
-    // let state_code = reqdata.customerdata.map((data)=>{
-    //     return data.statename.value;
-    // });
+    let owner_company = reqdata.customerdata.owner_company;
+    let state = reqdata.customerdata.statename.label;
+    let state_code = reqdata.customerdata.statename.value;
     let customer_name = reqdata.rowdatadisplayed.map((data)=>{
         return data.customer_name;
     });
@@ -298,17 +292,18 @@ router.put('/updateDeliveryData',(req,res)=>{
     let finalquerystring = querystring1 + midquerystring1 + "," + 
     midquerystring2 + "," + midquerystring3 + "," + midquerystring4 + 
     "," + midquerystring5 + querystring3;
-    db.query(finalquerystring,
-            (err, result)=>{
-                if(err){
-                    res.send(err);
-                    console.log(err);
-                }
-                else{
-                    res.json(result);
-                }
-            }
-        )
+    console.log("finalquerystring",finalquerystring);
+    // db.query(finalquerystring,
+    //         (err, result)=>{
+    //             if(err){
+    //                 res.send(err);
+    //                 console.log(err);
+    //             }
+    //             else{
+    //                 res.json(result);
+    //             }
+    //         }
+    //     )
 })
 router.put('/updaterateofdelivery',(req,res)=>{
     const reqdata = req.body.params;
