@@ -211,15 +211,16 @@ router.put('/updateDeliveryData',(req,res)=>{
     const reqdata = req.body.params;
     console.log("hiii rowdatadisplayed", reqdata.rowdatadisplayed);
     console.log("hiii customerdata", reqdata.customerdata);
-    let owner_company = reqdata.customerdata.map((data)=>{
-        return data.owner_company;
-    });
-    let state = reqdata.customerdata.map((data)=>{
-        return data.statename.label;
-    });
-    let state_code = reqdata.customerdata.map((data)=>{
-        return data.statename.value;
-    });
+    console.log("hiii customerdata", reqdata.customerdata.statename.label);
+    // let owner_company = reqdata.customerdata.map((data)=>{
+    //     return data.owner_company;
+    // });
+    // let state = reqdata.customerdata.map((data)=>{
+    //     return data.statename.label;
+    // });
+    // let state_code = reqdata.customerdata.map((data)=>{
+    //     return data.statename.value;
+    // });
     let customer_name = reqdata.rowdatadisplayed.map((data)=>{
         return data.customer_name;
     });
