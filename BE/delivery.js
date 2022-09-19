@@ -397,6 +397,7 @@ router.put('/updaterateofdelivery',(req,res)=>{
             let midquerystring1 = q2 + q3 +q6 + q5;
             finalquery = q1 + midquerystring1 + q4;
     }
+    console.log("finalquery", finalquery);
     db.query(finalquery,
         (err, result)=>{
             if(err){
