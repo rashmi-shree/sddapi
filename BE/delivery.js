@@ -215,7 +215,7 @@ router.put('/updateDeliveryData',(req,res)=>{
     let owner_company = reqdata.customerdata.owner_company;
     let state = reqdata.customerdata.statename.label;
     let state_code = reqdata.customerdata.statename.value;
-    var phone_number_alter_one = 'null';
+    var phone_number_alter_one = '';
     var phone_number_alter_two = 'null';
     var requested_delivery_date = 'null';
     let customer_name = reqdata.rowdatadisplayed.map((data)=>{
