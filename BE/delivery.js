@@ -259,14 +259,17 @@ router.put('/updateDeliveryData',(req,res)=>{
     let payment_status = reqdata.rowdatadisplayed.map((data)=>{
         return data.payment_status;
     });
-    if (requested_delivery_date.length == 0){
-        requested_delivery_date = null;
-    }
-    else {
-        requested_delivery_date = reqdata.rowdatadisplayed.map((data)=>{
-            return data.requested_delivery_date;
-        });
-    }
+    requested_delivery_date = reqdata.rowdatadisplayed.map((data)=>{
+        return data.requested_delivery_date;
+    });
+    // if (requested_delivery_date.length == 0){
+    //     requested_delivery_date = null;
+    // }
+    // else {
+    //     requested_delivery_date = reqdata.rowdatadisplayed.map((data)=>{
+    //         return data.requested_delivery_date;
+    //     });
+    // }
     // var myDate = new Date(new Date().getTime()+(5*24*60*60*1000));
     // var myDate1 = myDate.toISOString();
     // var requested_delivery_date = myDate1.substr(0,10);
