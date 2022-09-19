@@ -215,6 +215,8 @@ router.put('/updateDeliveryData',(req,res)=>{
     let owner_company = reqdata.customerdata.owner_company;
     let state = reqdata.customerdata.statename.label;
     let state_code = reqdata.customerdata.statename.value;
+    let phone_number_alter_one = null;
+    let phone_number_alter_two = null;
     let customer_name = reqdata.rowdatadisplayed.map((data)=>{
         return data.customer_name;
     });
@@ -224,10 +226,10 @@ router.put('/updateDeliveryData',(req,res)=>{
     let phone_number = reqdata.rowdatadisplayed.map((data)=>{
         return data.phone_number;
     });
-    let phone_number_alter_one = reqdata.rowdatadisplayed.map((data)=>{
+    phone_number_alter_one = reqdata.rowdatadisplayed.map((data)=>{
         return data.phone_number_alter_one;
     });
-    let phone_number_alter_two = reqdata.rowdatadisplayed.map((data)=>{
+    phone_number_alter_two = reqdata.rowdatadisplayed.map((data)=>{
         return data.phone_number_alter_two;
     });
     let quantity = reqdata.rowdatadisplayed.map((data)=>{
