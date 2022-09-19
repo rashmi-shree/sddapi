@@ -227,12 +227,16 @@ router.put('/updateDeliveryData',(req,res)=>{
     let phone_number = reqdata.rowdatadisplayed.map((data)=>{
         return data.phone_number;
     });
-    phone_number_alter_one = reqdata.rowdatadisplayed.map((data)=>{
-        return data.phone_number_alter_one;
-    });
+    
     if (phone_number_alter_one.length == 0){
         phone_number_alter_one = null;
     }
+    else {
+        phone_number_alter_one = reqdata.rowdatadisplayed.map((data)=>{
+            return data.phone_number_alter_one;
+        });
+    }
+    console.log("phone_number_alter_one",phone_number_alter_one);
     phone_number_alter_two = reqdata.rowdatadisplayed.map((data)=>{
         return data.phone_number_alter_two;
     });
@@ -302,7 +306,7 @@ router.put('/updateDeliveryData',(req,res)=>{
     let querystring31 = "";
     for (var i = 0; i<hsn_codes.length; i++){
         querystring2 += ` when product_hsn_code = ${hsn_codes[i]} then ${advance_amount[i]}`;
-        querystring7 += ` when product_hsn_code = ${hsn_codes[i]} then  ${requested_delivery_date}`;
+        querystring7 += ` when product_hsn_code = ${hsn_codes[i]} then  "${requested_delivery_date}"`;
         querystring8 += ` when product_hsn_code = ${hsn_codes[i]} then  "${payment_status[i]}"`;
         querystring10 += ` when product_hsn_code = ${hsn_codes[i]} then  "${booked_date}"`;
         querystring15 += ` when product_hsn_code = ${hsn_codes[i]} then  "${owner_company}"`;
@@ -311,8 +315,8 @@ router.put('/updateDeliveryData',(req,res)=>{
         querystring21 += ` when product_hsn_code = ${hsn_codes[i]} then  "${customer_name}"`;
         querystring27 += ` when product_hsn_code = ${hsn_codes[i]} then  "${customer_address}"`;
         querystring28 += ` when product_hsn_code = ${hsn_codes[i]} then  "${phone_number}"`;
-        querystring29 += ` when product_hsn_code = ${hsn_codes[i]} then  ${phone_number_alter_one}`;
-        querystring30 += ` when product_hsn_code = ${hsn_codes[i]} then  ${phone_number_alter_two}`;
+        querystring29 += ` when product_hsn_code = ${hsn_codes[i]} then  "${phone_number_alter_one}"`;
+        querystring30 += ` when product_hsn_code = ${hsn_codes[i]} then  "${phone_number_alter_two}"`;
         querystring31 += ` when product_hsn_code = ${hsn_codes[i]} then  "${quantity}"`;
         if (extended_discount[i] != null){
             querystring13 += ` when product_hsn_code = ${hsn_codes[i]} then  "${extended_discount[i]}"`;
