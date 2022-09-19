@@ -215,9 +215,9 @@ router.put('/updateDeliveryData',(req,res)=>{
     let owner_company = reqdata.customerdata.owner_company;
     let state = reqdata.customerdata.statename.label;
     let state_code = reqdata.customerdata.statename.value;
-    let phone_number_alter_one = null;
-    let phone_number_alter_two = null;
-    let requested_delivery_date = null;
+    var phone_number_alter_one = 'null';
+    var phone_number_alter_two = 'null';
+    var requested_delivery_date = 'null';
     let customer_name = reqdata.rowdatadisplayed.map((data)=>{
         return data.customer_name;
     });
@@ -230,9 +230,15 @@ router.put('/updateDeliveryData',(req,res)=>{
     phone_number_alter_one = reqdata.rowdatadisplayed.map((data)=>{
         return data.phone_number_alter_one;
     });
+    if (phone_number_alter_one.length == 0){
+        phone_number_alter_one = null;
+    }
     phone_number_alter_two = reqdata.rowdatadisplayed.map((data)=>{
         return data.phone_number_alter_two;
     });
+    if (phone_number_alter_two.length == 0){
+        phone_number_alter_two = null;
+    }
     let quantity = reqdata.rowdatadisplayed.map((data)=>{
         return data.quantity;
     });
@@ -251,6 +257,9 @@ router.put('/updateDeliveryData',(req,res)=>{
     requested_delivery_date = reqdata.rowdatadisplayed.map((data)=>{
         return data.requested_delivery_date;
     });
+    if (requested_delivery_date.length == 0){
+        requested_delivery_date = null;
+    }
     // var myDate = new Date(new Date().getTime()+(5*24*60*60*1000));
     // var myDate1 = myDate.toISOString();
     // var requested_delivery_date = myDate1.substr(0,10);
