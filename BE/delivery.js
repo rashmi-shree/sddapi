@@ -216,8 +216,8 @@ router.put('/updateDeliveryData',(req,res)=>{
     let state = reqdata.customerdata.statename.label;
     let state_code = reqdata.customerdata.statename.value;
     var phone_number_alter_one = '';
-    var phone_number_alter_two = 'null';
-    var requested_delivery_date = 'null';
+    var phone_number_alter_two = '';
+    var requested_delivery_date = '';
     let customer_name = reqdata.rowdatadisplayed.map((data)=>{
         return data.customer_name;
     });
@@ -236,12 +236,13 @@ router.put('/updateDeliveryData',(req,res)=>{
             return data.phone_number_alter_one;
         });
     }
-    console.log("phone_number_alter_one",phone_number_alter_one);
-    phone_number_alter_two = reqdata.rowdatadisplayed.map((data)=>{
-        return data.phone_number_alter_two;
-    });
     if (phone_number_alter_two.length == 0){
         phone_number_alter_two = null;
+    }
+    else {
+        phone_number_alter_two = reqdata.rowdatadisplayed.map((data)=>{
+            return data.phone_number_alter_two;
+        });
     }
     let quantity = reqdata.rowdatadisplayed.map((data)=>{
         return data.quantity;
@@ -258,11 +259,13 @@ router.put('/updateDeliveryData',(req,res)=>{
     let payment_status = reqdata.rowdatadisplayed.map((data)=>{
         return data.payment_status;
     });
-    requested_delivery_date = reqdata.rowdatadisplayed.map((data)=>{
-        return data.requested_delivery_date;
-    });
     if (requested_delivery_date.length == 0){
         requested_delivery_date = null;
+    }
+    else {
+        requested_delivery_date = reqdata.rowdatadisplayed.map((data)=>{
+            return data.requested_delivery_date;
+        });
     }
     // var myDate = new Date(new Date().getTime()+(5*24*60*60*1000));
     // var myDate1 = myDate.toISOString();
@@ -350,17 +353,17 @@ router.put('/updateDeliveryData',(req,res)=>{
     +midquerystring11 + "," + midquerystring12 + "," + midquerystring13 + "," +
     midquerystring14 + querystring3;
     console.log("finalquerystring",finalquerystring);
-    // db.query(finalquerystring,
-    //         (err, result)=>{
-    //             if(err){
-    //                 res.send(err);
-    //                 console.log(err);
-    //             }
-    //             else{
-    //                 res.json(result);
-    //             }
-    //         }
-    //     )
+    db.query(finalquerystring,
+            (err, result)=>{
+                if(err){
+                    res.send(err);
+                    console.log(err);
+                }
+                else{
+                    res.json(result);
+                }
+            }
+        )
 })
 router.put('/updaterateofdelivery',(req,res)=>{
     const reqdata = req.body.params;
