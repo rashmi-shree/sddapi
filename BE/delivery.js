@@ -350,7 +350,7 @@ router.put('/updateDeliveryData',(req,res)=>{
     midquerystring2 + "," + midquerystring3 + "," + midquerystring4 + 
     "," + midquerystring5 + "," + midquerystring6 + "," + midquerystring7 +
     "," + midquerystring8 + "," + midquerystring9 + "," + midquerystring10 + ","
-    +midquerystring11 + "," + midquerystring12 + "," + midquerystring13 + "," +
+    +midquerystring11 + "," +
     midquerystring14 + querystring3;
     console.log("finalquerystring",finalquerystring);
     db.query(finalquerystring,
