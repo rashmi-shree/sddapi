@@ -22,4 +22,40 @@ router.get('/getusers',(req,res)=>{
         }
     )
 })
+router.put('/edituserdata',(req,res)=>{
+    const reqdata = req.body.params;
+    console.log("reqdata",reqdata);
+    db.query(
+    `update users set 
+    username = ? and password = ? where id=?`,
+    [
+        username,
+        password,
+        id
+    ],
+        (err, result)=>{
+            if(err){
+                console.log(err);
+            }
+            else{
+                res.json(result);
+            }
+        }
+    )
+})
+router.delete('/deleteuserdata', (req,res)=>{
+    const id = req.body.id;
+    db.query(
+        'DELETE FROM product_details_table WHERE product_hsn_code = ?',
+        [id],
+        (err, result)=>{
+            if(err){
+                console.log(err);
+            }
+            else{
+                res.send(result);
+            }
+        }
+    )
+})
 module.exports = router;
