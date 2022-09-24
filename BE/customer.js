@@ -285,6 +285,25 @@ router.post('/customizeddatefetchcustomerdata', (req,res)=>{
         }
     )
 })
+router.post('/todaydatefetchcustomerdata', (req,res)=>{
+    const reqdata = req.body.params;
+    const currentdate = reqdata.currentdate;
+    db.query(
+        `select * from customer_follow_up_data where 
+        enquiry_date = ?`,
+        [
+            currentdate
+        ],
+        (err, result)=>{
+            if(err){
+                console.log(err);
+            }
+            else{
+                res.send(result);
+            }
+        }
+    )
+})
 router.put('/updateCustomerDetails',(req,res)=>{
     const reqdata = req.body.params.updaterowdata;
     const customer_name = reqdata.customer_name;
