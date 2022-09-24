@@ -29,8 +29,12 @@ router.put('/edituserdata',(req,res)=>{
     const password = reqdata.data.password;
     const id = reqdata.id;
     db.query(
-    `update users set 
-    username = ? and password = ? where id=?`,
+    `update 
+        users 
+    set 
+        username = ?, 
+        password = ? 
+    where id=?`,
     [
         username,
         password,
