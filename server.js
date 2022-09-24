@@ -6,6 +6,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const login = require("./BE/login");
+const users = require("./BE/user");
 const delivery = require("./BE/delivery");
 const customer = require("./BE/customer");
 const jointables = require("./BE/jointables");
@@ -14,6 +15,7 @@ const stateandstatecodes = require("./BE/stateandstatecodes");
 const dealers = require("./BE/dealers");
 
 app.use("/users",login);
+app.use("/employees",users);
 app.use("/delivery",delivery);
 app.use("/customer",customer);
 app.use("/jointables",jointables);

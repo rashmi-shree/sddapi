@@ -206,7 +206,6 @@ router.post('/insertdealerscustomertable',(req,res)=>{
     const phone_number = reqdata.dealersdata.proprietor_phone_number;
     const customer_name = reqdata.dealersdata.enterprise_name;
     const state = reqdata.state.label;
-    console.log("helloo", reqdata.changed_data);
     let phone_number_alter_one = null;
     let phone_number_alter_two = null;
     if (reqdata.changed_data != undefined){
