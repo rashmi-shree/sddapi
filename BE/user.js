@@ -69,6 +69,8 @@ router.delete('/deleteuserdata', (req,res)=>{
 })
 router.post('/insertuserdata',(req,res)=>{
     const reqdata = req.body.params;
+    const username = reqdata.addFormData.username;
+    const password = reqdata.addFormData.password;
     console.log("hello", reqdata);
     db.query(
         `insert into users 
