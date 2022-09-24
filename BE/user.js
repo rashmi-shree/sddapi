@@ -51,9 +51,11 @@ router.put('/edituserdata',(req,res)=>{
     )
 })
 router.delete('/deleteuserdata', (req,res)=>{
-    const id = req.body.id;
+    const reqdata = req.body.params;
+    console.log("reqdata",reqdata);
+    const id = reqdata.id;
     db.query(
-        'DELETE FROM product_details_table WHERE product_hsn_code = ?',
+        'DELETE FROM users WHERE id = ?',
         [id],
         (err, result)=>{
             if(err){
