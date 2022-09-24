@@ -51,7 +51,7 @@ router.put('/edituserdata',(req,res)=>{
     )
 })
 router.delete('/deleteuserdata', (req,res)=>{
-    const reqdata = req.body.params;
+    const reqdata = req.body;
     console.log("reqdata",reqdata);
     const id = reqdata.id;
     db.query(
