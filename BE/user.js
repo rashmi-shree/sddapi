@@ -67,4 +67,28 @@ router.delete('/deleteuserdata', (req,res)=>{
         }
     )
 })
+router.post('/insertuserdata',(req,res)=>{
+    const reqdata = req.body.params;
+    console.log("hello", reqdata);
+    db.query(
+        `insert into users 
+        (   
+            username,
+            password
+        ) values (?, ?)`,
+        [
+            username,
+            password
+        ],
+     (err, result)=>
+     {
+            if(err){
+                res.send(err);
+            }
+            else{
+                res.json(result);
+            }
+        }
+    )
+})
 module.exports = router;
