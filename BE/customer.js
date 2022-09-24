@@ -288,6 +288,7 @@ router.post('/customizeddatefetchcustomerdata', (req,res)=>{
 router.post('/todaydatefetchcustomerdata', (req,res)=>{
     const reqdata = req.body.params;
     const currentdate = reqdata.currentdate;
+    console.log("currentdate",currentdate);
     db.query(
         `select * from customer_follow_up_data where 
         enquiry_date = '?' and final_status = '?'`,
