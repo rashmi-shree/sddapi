@@ -475,6 +475,7 @@ router.put('/updatebalanceamountdelivery',(req,res)=>{
         }
     }
     let finalquery = q1 + q2 + q3 + q4 + q5;
+    console.log("finalquery",finalquery);
      db.query(finalquery,
             (err, result)=>{
                 if(err){
