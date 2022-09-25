@@ -212,9 +212,15 @@ router.put('/updateDeliveryData',(req,res)=>{
     console.log("hiii rowdatadisplayed", reqdata.rowdatadisplayed);
     console.log("hiii customerdata", reqdata.customerdata);
     console.log("hiii customerdata", reqdata.customerdata.statename.label);
-    let owner_company = reqdata.customerdata.owner_company;
-    let state = reqdata.customerdata.statename.label;
-    let state_code = reqdata.customerdata.statename.value;
+    let owner_company = reqdata.rowdatadisplayed.map((data)=>{
+        return data.owner_company;
+    });
+    let state = reqdata.rowdatadisplayed.map((data)=>{
+        return data.state;
+    });
+    let state_code = reqdata.rowdatadisplayed.map((data)=>{
+        return data.state_code;
+    });
     var phone_number_alter_one = '';
     var phone_number_alter_two = '';
     var requested_delivery_date = '';
@@ -397,7 +403,6 @@ router.put('/updaterateofdelivery',(req,res)=>{
             let midquerystring1 = q2 + q3 +q6 + q5;
             finalquery = q1 + midquerystring1 + q4;
     }
-    console.log("finalquery!@#$%^&^%$#@", finalquery);
     db.query(finalquery,
         (err, result)=>{
             if(err){
@@ -409,7 +414,6 @@ router.put('/updaterateofdelivery',(req,res)=>{
             }
         }
     )
-    console.log("________123456789__________")
 })
 router.post ('/getstatecodefromdelivery', (req, res)=>{
     const reqdata = req.body.params;
