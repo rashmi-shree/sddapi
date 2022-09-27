@@ -138,6 +138,8 @@ router.post('/addCustomerFollowUpData',(req,res)=>{
     const customerAddress = reqdata.customerAddress;
     const statename = reqdata.statename.label;
     console.log("statename",statename);
+    const owner_company = reqdata.owner_company;
+    console.log("owner_company",owner_company);
     const phoneno = reqdata.phoneno;
     phonenoalterone = reqdata.phonenoalterone;
     phonenoaltertwo = reqdata.phonenoaltertwo;
