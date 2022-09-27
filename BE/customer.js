@@ -134,9 +134,9 @@ router.post('/addCustomerFollowUpData',(req,res)=>{
     var phonenoaltertwo = 'null';
     const customerReferenceNo = reqdata.customerReferenceNo;
     const enquiryDate = reqdata.enquiryDate;
-    console.log("enquiryDate",enquiryDate);
     const customerName = reqdata.customerName;
     const customerAddress = reqdata.customerAddress;
+    console.log("statename",statename);
     const statename = reqdata.statename.label;
     const phoneno = reqdata.phoneno;
     phonenoalterone = reqdata.phonenoalterone;
