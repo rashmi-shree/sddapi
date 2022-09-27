@@ -525,9 +525,9 @@ router.post('/addDeliveryData',(req,res)=>{
   const customerAddress = reqdata.customerAddress;
   const customerName = reqdata.customerName;
   const phone_number = reqdata.phone_number;
-  const statename = reqdata.statename.label;
-  const statecode = reqdata.statename.value;
-  const owner_company = reqdata.owner_company;
+  var statename = reqdata.statename.label;
+  var statecode = reqdata.statename.value;
+  var owner_company = reqdata.owner_company;
   if(statename == undefined){
     if (owner_company == "SRI PARAMANANDA ENTERPRISES"){
         statename = "Karnataka";
