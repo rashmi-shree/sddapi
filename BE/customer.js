@@ -150,6 +150,14 @@ router.post('/addCustomerFollowUpData',(req,res)=>{
     if (phonenoaltertwo.length == 0){
         phonenoaltertwo = null;
     }
+    if (statename == undefined){
+        if(owner_company == "SRI PARAMANANDA ENTERPRISES"){
+            statename = "Karnataka"
+        }
+        else if(owner_company == "SDD ENTERPRISES"){
+            statename = "Tamil Nadu"
+        }
+    }
     db.query(
                 `insert into customer_follow_up_data 
                 (

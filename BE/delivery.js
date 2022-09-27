@@ -525,6 +525,19 @@ router.post('/addDeliveryData',(req,res)=>{
   const customerAddress = reqdata.customerAddress;
   const customerName = reqdata.customerName;
   const phone_number = reqdata.phone_number;
+  const statename = reqdata.statename.label;
+  const statecode = reqdata.statename.value;
+  const owner_company = reqdata.owner_company;
+  if(statename == undefined){
+    if (owner_company == "SRI PARAMANANDA ENTERPRISES"){
+        statename = "Karnataka";
+        statecode = "29";
+    }
+    else if (owner_company == "SDD ENTERPRISES"){
+        statename = "Tamil Nadu";
+        statecode = "33";
+    }
+  }
   var phone_number_alter_one = reqdata.phone_number_alter_one;
   var phone_number_alter_two = reqdata.phone_number_alter_two;
 
@@ -542,8 +555,8 @@ if (phone_number_alter_two.length == 0){
         temp.push([
             reqdata.customerReferenceNo,
             reqdata.customerAddress,
-            reqdata.statename.label,
-            reqdata.statename.value,
+            statename,
+            statecode,
             reqdata.phone_number,
             phone_number_alter_one,
             phone_number_alter_two,
@@ -551,7 +564,7 @@ if (phone_number_alter_two.length == 0){
             reqdata.product[i],
             reqdata.quantity[i],
             reqdata.customer_name,
-            reqdata.owner_company
+            owner_company
         ])
     }
         db.query(
