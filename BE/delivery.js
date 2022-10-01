@@ -211,11 +211,6 @@ router.put('/updateDeliveryData',(req,res)=>{
     const reqdata = req.body.params;
     const rowdatadisplayed = req.body.params.rowdatadisplayed;
     const customerdata = req.body.params.customerdata;
-
-    console.log("#$%^&*&^%$#$%^&*&^%$#$%^&*&^%$#@#$%^&&^%$#@#$%^&*");
-    console.log("rowdatadisplayed",rowdatadisplayed);
-    console.log("customerdata",customerdata);
-    console.log("#$%^&*&^%$#$%^&*&^%$#$%^&*&^%$#@#$%^&&^%$#@#$%^&*");
     let owner_company = reqdata.rowdatadisplayed.map((data)=>{
         return data.owner_company;
     });
@@ -228,9 +223,6 @@ router.put('/updateDeliveryData',(req,res)=>{
     let state_code = reqdata.rowdatadisplayed.map((data)=>{
         return data.state_code;
     });
-    console.log("----------------------------------owner_company",owner_company);
-    console.log("----------------------------------state",state);
-    console.log("----------------------------------state_code",state_code);
     var phone_number_alter_one = '';
     var phone_number_alter_two = '';
     var requested_delivery_date = '';
@@ -278,7 +270,6 @@ router.put('/updateDeliveryData',(req,res)=>{
     requested_delivery_date = reqdata.rowdatadisplayed.map((data)=>{
         return data.requested_delivery_date;
     });
-    console.log("requested_delivery_date",requested_delivery_date);
     // if (requested_delivery_date.length == 0){
     //     requested_delivery_date = null;
     // }
@@ -372,7 +363,6 @@ router.put('/updateDeliveryData',(req,res)=>{
     "," + midquerystring8 + "," + midquerystring9 + "," + midquerystring10 + ","
     +midquerystring11 + "," +
     midquerystring14 + querystring3;
-    console.log("finalquerystring",finalquerystring);
     db.query(finalquerystring,
             (err, result)=>{
                 if(err){
@@ -415,17 +405,17 @@ router.put('/updaterateofdelivery',(req,res)=>{
             finalquery = q1 + midquerystring1 + q4;
     }
     console.log("hiii helloo", finalquery);
-    db.query(finalquery,
-        (err, result)=>{
-            if(err){
-                res.send(err);
-                console.log(err);
-            }
-            else{
-                res.json(result);
-            }
-        }
-    )
+    // db.query(finalquery,
+    //     (err, result)=>{
+    //         if(err){
+    //             res.send(err);
+    //             console.log(err);
+    //         }
+    //         else{
+    //             res.json(result);
+    //         }
+    //     }
+    // )
 })
 router.post ('/getstatecodefromdelivery', (req, res)=>{
     const reqdata = req.body.params;
