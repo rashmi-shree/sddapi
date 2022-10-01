@@ -212,12 +212,14 @@ router.put('/updateDeliveryData',(req,res)=>{
     let owner_company = reqdata.rowdatadisplayed.map((data)=>{
         return data.owner_company;
     });
-    let state = reqdata.rowdatadisplayed.map((data)=>{
-        return data.state;
-    });
-    let state_code = reqdata.rowdatadisplayed.map((data)=>{
-        return data.state_code;
-    });
+    // let state = reqdata.rowdatadisplayed.map((data)=>{
+    //     return data.state;
+    // });
+    let state = reqdata.customerdata.statename.label;
+    let state_code = reqdata.customerdata.statename.value;
+    // let state_code = reqdata.rowdatadisplayed.map((data)=>{
+    //     return data.state_code;
+    // });
     console.log("owner_company",owner_company);
     console.log("state",state);
     console.log("state_code",state_code);
