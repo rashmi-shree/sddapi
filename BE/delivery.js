@@ -209,33 +209,33 @@ router.post ('/getpurchasestatusfrom', (req, res)=>{
 })
 router.put('/updateDeliveryData',(req,res)=>{
     const reqdata = req.body.params;
-    let owner_company1 = reqdata.rowdatadisplayed.map((data)=>{
-        return data.owner_company;
-    });
+    // let owner_company1 = reqdata.rowdatadisplayed.map((data)=>{
+    //     return data.owner_company;
+    // });
     let owner_company = reqdata.customerdata.owner_company;
-    let state1 = reqdata.rowdatadisplayed.map((data)=>{
-        return data.state;
-    });
+    // let state1 = reqdata.rowdatadisplayed.map((data)=>{
+    //     return data.state;
+    // });
     let state = reqdata.customerdata.statename.label;
     let state_code = reqdata.customerdata.statename.value;
-    let state_code1 = reqdata.rowdatadisplayed.map((data)=>{
-        return data.state_code;
-    });
+    // let state_code1 = reqdata.rowdatadisplayed.map((data)=>{
+    //     return data.state_code;
+    // });
     console.log("----------------------------------owner_company",owner_company);
     console.log("----------------------------------state",state);
     console.log("----------------------------------state_code",state_code);
-    console.log("----------------------------------owner_company1",owner_company1);
-    console.log("----------------------------------state1",state1);
-    console.log("----------------------------------state_code1",state_code1);
-    if (owner_company1 !=owner_company){
-        owner_company = owner_company;
-        state = state;
-        state_code = state_code;
-    }
-    if(state1 != state){
-        state = state1;
-        state_code = state_code1;
-    }
+    // console.log("----------------------------------owner_company1",owner_company1);
+    // console.log("----------------------------------state1",state1);
+    // console.log("----------------------------------state_code1",state_code1);
+    // if (owner_company1 !=owner_company){
+    //     owner_company = owner_company;
+    //     state = state;
+    //     state_code = state_code;
+    // }
+    // if(state1 != state){
+    //     state = state1;
+    //     state_code = state_code1;
+    // }
 
     var phone_number_alter_one = '';
     var phone_number_alter_two = '';
