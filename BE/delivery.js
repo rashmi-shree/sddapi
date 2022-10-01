@@ -209,9 +209,9 @@ router.post ('/getpurchasestatusfrom', (req, res)=>{
 })
 router.put('/updateDeliveryData',(req,res)=>{
     const reqdata = req.body.params;
-    // let owner_company1 = reqdata.rowdatadisplayed.map((data)=>{
-    //     return data.owner_company;
-    // });
+    let owner_company1 = reqdata.rowdatadisplayed.map((data)=>{
+        return data.owner_company;
+    });
     let owner_company = reqdata.customerdata.owner_company;
     // let state1 = reqdata.rowdatadisplayed.map((data)=>{
     //     return data.state;
@@ -227,11 +227,9 @@ router.put('/updateDeliveryData',(req,res)=>{
     // console.log("----------------------------------owner_company1",owner_company1);
     // console.log("----------------------------------state1",state1);
     // console.log("----------------------------------state_code1",state_code1);
-    // if (owner_company1 !=owner_company){
-    //     owner_company = owner_company;
-    //     state = state;
-    //     state_code = state_code;
-    // }
+    if (owner_company1 !=owner_company){
+        owner_company = owner_company1;
+    }
     // if(state1 != state){
     //     state = state1;
     //     state_code = state_code1;
