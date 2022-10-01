@@ -295,14 +295,14 @@ router.put('/updateDeliveryData',(req,res)=>{
     let querystring9 = "payment_status = ( case ";
     let querystring11 = "booked_date = ( case ";
     let querystring12 = "extended_discount = (case ";
-    let querystring14 = "owner_company = (case ";
+    // let querystring14 = "owner_company = (case ";
     let querystring16 = "state = (case ";
     let querystring18 = "state_code = (case ";
-    let querystring20 = "customer_name = (case ";
-    let querystring22 = "customer_address = (case ";
-    let querystring23 = "phone_number = (case ";
-    let querystring24 = "phone_number_alter_one = (case ";
-    let querystring25 = "phone_number_alter_two = (case ";
+    // let querystring20 = "customer_name = (case ";
+    // let querystring22 = "customer_address = (case ";
+    // let querystring23 = "phone_number = (case ";
+    // let querystring24 = "phone_number_alter_one = (case ";
+    // let querystring25 = "phone_number_alter_two = (case ";
     let querystring26 = "quantity = (case ";
     let querystring2 = "";
     let querystring7 = "";
@@ -323,14 +323,14 @@ router.put('/updateDeliveryData',(req,res)=>{
         querystring7 += ` when product_hsn_code = ${hsn_codes[i]} then  "${requested_delivery_date[i]}"`;
         querystring8 += ` when product_hsn_code = ${hsn_codes[i]} then  "${payment_status[i]}"`;
         querystring10 += ` when product_hsn_code = ${hsn_codes[i]} then  "${booked_date}"`;
-        querystring15 += ` when product_hsn_code = ${hsn_codes[i]} then  "${owner_company[i]}"`;
+        // querystring15 += ` when product_hsn_code = ${hsn_codes[i]} then  "${owner_company[i]}"`;
         querystring17 += ` when product_hsn_code = ${hsn_codes[i]} then  "${state[i]}"`;
         querystring19 += ` when product_hsn_code = ${hsn_codes[i]} then  "${state_code[i]}"`;
-        querystring21 += ` when product_hsn_code = ${hsn_codes[i]} then  "${customer_name}"`;
-        querystring27 += ` when product_hsn_code = ${hsn_codes[i]} then  "${customer_address}"`;
-        querystring28 += ` when product_hsn_code = ${hsn_codes[i]} then  "${phone_number[i]}"`;
-        querystring29 += ` when product_hsn_code = ${hsn_codes[i]} then  "${phone_number_alter_one}"`;
-        querystring30 += ` when product_hsn_code = ${hsn_codes[i]} then  "${phone_number_alter_two}"`;
+        // querystring21 += ` when product_hsn_code = ${hsn_codes[i]} then  "${customer_name}"`;
+        // querystring27 += ` when product_hsn_code = ${hsn_codes[i]} then  "${customer_address}"`;
+        // querystring28 += ` when product_hsn_code = ${hsn_codes[i]} then  "${phone_number[i]}"`;
+        // querystring29 += ` when product_hsn_code = ${hsn_codes[i]} then  "${phone_number_alter_one}"`;
+        // querystring30 += ` when product_hsn_code = ${hsn_codes[i]} then  "${phone_number_alter_two}"`;
         querystring31 += ` when product_hsn_code = ${hsn_codes[i]} then  "${quantity}"`;
         if (extended_discount[i] != null){
             querystring13 += ` when product_hsn_code = ${hsn_codes[i]} then  "${extended_discount[i]}"`;
@@ -346,23 +346,21 @@ router.put('/updateDeliveryData',(req,res)=>{
     let midquerystring3 = querystring9 + querystring8 + querystring5;
     let midquerystring4 = querystring11 + querystring10 + querystring5;
     let midquerystring5 = querystring12 + querystring13 + querystring5;
-    let midquerystring6 = querystring14 + querystring15 + querystring5;
+    // let midquerystring6 = querystring14 + querystring15 + querystring5;
     let midquerystring7 = querystring16 + querystring17 + querystring5;
     let midquerystring8 = querystring18 + querystring19 + querystring5;
-    let midquerystring9 = querystring20 + querystring21 + querystring5;
-    let midquerystring10 = querystring22 + querystring27 + querystring5;
-    let midquerystring11 = querystring23 + querystring28+ querystring5;
-    let midquerystring12 = querystring24 + querystring29 + querystring5;
-    let midquerystring13 = querystring25 + querystring30 + querystring5;
+    // let midquerystring9 = querystring20 + querystring21 + querystring5;
+    // let midquerystring10 = querystring22 + querystring27 + querystring5;
+    // let midquerystring11 = querystring23 + querystring28+ querystring5;
+    // let midquerystring12 = querystring24 + querystring29 + querystring5;
+    // let midquerystring13 = querystring25 + querystring30 + querystring5;
     let midquerystring14 = querystring26 + querystring31 + querystring5;
 
 
     let finalquerystring = querystring1 + midquerystring1 + "," + 
     midquerystring2 + "," + midquerystring3 + "," + midquerystring4 + 
-    "," + midquerystring5 + "," + midquerystring6 + "," + midquerystring7 +
-    "," + midquerystring8 + "," + midquerystring9 + "," + midquerystring10 + ","
-    +midquerystring11 + "," +
-    midquerystring14 + querystring3;
+    "," + midquerystring5 + "," + midquerystring7 +
+    "," + midquerystring8 + "," + midquerystring14 + querystring3;
     db.query(finalquerystring,
             (err, result)=>{
                 if(err){
@@ -405,17 +403,17 @@ router.put('/updaterateofdelivery',(req,res)=>{
             finalquery = q1 + midquerystring1 + q4;
     }
     console.log("hiii helloo", finalquery);
-    // db.query(finalquery,
-    //     (err, result)=>{
-    //         if(err){
-    //             res.send(err);
-    //             console.log(err);
-    //         }
-    //         else{
-    //             res.json(result);
-    //         }
-    //     }
-    // )
+    db.query(finalquery,
+        (err, result)=>{
+            if(err){
+                res.send(err);
+                console.log(err);
+            }
+            else{
+                res.json(result);
+            }
+        }
+    )
 })
 router.post ('/getstatecodefromdelivery', (req, res)=>{
     const reqdata = req.body.params;
