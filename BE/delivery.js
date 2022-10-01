@@ -320,7 +320,7 @@ router.put('/updateDeliveryData',(req,res)=>{
     let querystring31 = "";
     for (var i = 0; i<hsn_codes.length; i++){
         querystring2 += ` when product_hsn_code = ${hsn_codes[i]} then ${advance_amount[i]}`;
-        querystring7 += ` when product_hsn_code = ${hsn_codes[i]} then  "${requested_delivery_date[i]}"`;
+        querystring7 += ` when product_hsn_code = ${hsn_codes[i]} then  "${requested_delivery_date}"`;
         querystring8 += ` when product_hsn_code = ${hsn_codes[i]} then  "${payment_status[i]}"`;
         querystring10 += ` when product_hsn_code = ${hsn_codes[i]} then  "${booked_date}"`;
         // querystring15 += ` when product_hsn_code = ${hsn_codes[i]} then  "${owner_company[i]}"`;
