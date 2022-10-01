@@ -238,6 +238,9 @@ if (state == undefined){
     state = reqdata.rowdatadisplayed.map((data)=>{
         return data.state;
     });
+    state_code = reqdata.rowdatadisplayed.map((data)=>{
+        return data.state_code;
+    });
 }
     var phone_number_alter_one = '';
     var phone_number_alter_two = '';
