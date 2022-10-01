@@ -209,6 +209,13 @@ router.post ('/getpurchasestatusfrom', (req, res)=>{
 })
 router.put('/updateDeliveryData',(req,res)=>{
     const reqdata = req.body.params;
+    const rowdatadisplayed = req.body.params.rowdatadisplayed;
+    const customerdata = req.body.params.customerdata;
+
+    console.log("#$%^&*&^%$#$%^&*&^%$#$%^&*&^%$#@#$%^&&^%$#@#$%^&*");
+    console.log("rowdatadisplayed",rowdatadisplayed);
+    console.log("customerdata",customerdata);
+    console.log("#$%^&*&^%$#$%^&*&^%$#$%^&*&^%$#@#$%^&&^%$#@#$%^&*");
     let owner_company = reqdata.rowdatadisplayed.map((data)=>{
         return data.owner_company;
     });
