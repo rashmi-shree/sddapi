@@ -229,6 +229,8 @@ router.put('/updateDeliveryData',(req,res)=>{
     console.log("----------------------------------state_code1",state_code1);
     if (owner_company1 !=owner_company){
         owner_company = owner_company;
+        state = state;
+        state_code = state_code;
     }
     if(state1 != state){
         state = state1;
