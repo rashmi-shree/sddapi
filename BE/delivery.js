@@ -220,9 +220,9 @@ router.put('/updateDeliveryData',(req,res)=>{
     // let state_code = reqdata.rowdatadisplayed.map((data)=>{
     //     return data.state_code;
     // });
-    console.log("owner_company",owner_company);
-    console.log("state",state);
-    console.log("state_code",state_code);
+    console.log("----------------------------------owner_company",owner_company);
+    console.log("----------------------------------state",state);
+    console.log("----------------------------------state_code",state_code);
     var phone_number_alter_one = '';
     var phone_number_alter_two = '';
     var requested_delivery_date = '';
