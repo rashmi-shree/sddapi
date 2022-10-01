@@ -220,35 +220,17 @@ router.put('/updateDeliveryData',(req,res)=>{
         return data.owner_company;
     });
     // let owner_company = reqdata.customerdata.owner_company;
-    // let state1 = reqdata.rowdatadisplayed.map((data)=>{
-    //     return data.state;
-    // });
-    let state = reqdata.customerdata.statename.label;
-    let state_code = reqdata.customerdata.statename.value;
-    // let state_code1 = reqdata.rowdatadisplayed.map((data)=>{
-    //     return data.state_code;
-    // });
+    let state = reqdata.rowdatadisplayed.map((data)=>{
+        return data.state;
+    });
+    // let state = reqdata.customerdata.statename.label;
+    // let state_code = reqdata.customerdata.statename.value;
+    let state_code = reqdata.rowdatadisplayed.map((data)=>{
+        return data.state_code;
+    });
     console.log("----------------------------------owner_company",owner_company);
     console.log("----------------------------------state",state);
     console.log("----------------------------------state_code",state_code);
-    // console.log("----------------------------------owner_company1",owner_company1);
-    // console.log("----------------------------------state1",state1);
-    // console.log("----------------------------------state_code1",state_code1);
-    // if (owner_company1 !=owner_company){
-    //     owner_company = owner_company1;
-    // }
-    // if(state1 != state){
-    //     state = state1;
-    //     state_code = state_code1;
-    // }
-if (state == undefined){
-    state = reqdata.rowdatadisplayed.map((data)=>{
-        return data.state;
-    });
-    state_code = reqdata.rowdatadisplayed.map((data)=>{
-        return data.state_code;
-    });
-}
     var phone_number_alter_one = '';
     var phone_number_alter_two = '';
     var requested_delivery_date = '';
@@ -350,9 +332,9 @@ if (state == undefined){
         querystring7 += ` when product_hsn_code = ${hsn_codes[i]} then  "${requested_delivery_date[i]}"`;
         querystring8 += ` when product_hsn_code = ${hsn_codes[i]} then  "${payment_status[i]}"`;
         querystring10 += ` when product_hsn_code = ${hsn_codes[i]} then  "${booked_date}"`;
-        querystring15 += ` when product_hsn_code = ${hsn_codes[i]} then  "${owner_company}"`;
-        querystring17 += ` when product_hsn_code = ${hsn_codes[i]} then  "${state}"`;
-        querystring19 += ` when product_hsn_code = ${hsn_codes[i]} then  "${state_code}"`;
+        querystring15 += ` when product_hsn_code = ${hsn_codes[i]} then  "${owner_company[i]}"`;
+        querystring17 += ` when product_hsn_code = ${hsn_codes[i]} then  "${state[i]}"`;
+        querystring19 += ` when product_hsn_code = ${hsn_codes[i]} then  "${state_code[i]}"`;
         querystring21 += ` when product_hsn_code = ${hsn_codes[i]} then  "${customer_name}"`;
         querystring27 += ` when product_hsn_code = ${hsn_codes[i]} then  "${customer_address}"`;
         querystring28 += ` when product_hsn_code = ${hsn_codes[i]} then  "${phone_number}"`;
