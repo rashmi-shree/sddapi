@@ -303,7 +303,7 @@ router.put('/updateDeliveryData',(req,res)=>{
     // let querystring23 = "phone_number = (case ";
     // let querystring24 = "phone_number_alter_one = (case ";
     // let querystring25 = "phone_number_alter_two = (case ";
-    let querystring26 = "quantity = (case ";
+    // let querystring26 = "quantity = (case ";
     let querystring2 = "";
     let querystring7 = "";
     let querystring8 = "";
@@ -331,7 +331,7 @@ router.put('/updateDeliveryData',(req,res)=>{
         // querystring28 += ` when product_hsn_code = ${hsn_codes[i]} then  "${phone_number[i]}"`;
         // querystring29 += ` when product_hsn_code = ${hsn_codes[i]} then  "${phone_number_alter_one}"`;
         // querystring30 += ` when product_hsn_code = ${hsn_codes[i]} then  "${phone_number_alter_two}"`;
-        querystring31 += ` when product_hsn_code = ${hsn_codes[i]} then  "${quantity}"`;
+        // querystring31 += ` when product_hsn_code = ${hsn_codes[i]} then  "${quantity}"`;
         if (extended_discount[i] != null){
             querystring13 += ` when product_hsn_code = ${hsn_codes[i]} then  "${extended_discount[i]}"`;
         }
@@ -354,13 +354,13 @@ router.put('/updateDeliveryData',(req,res)=>{
     // let midquerystring11 = querystring23 + querystring28+ querystring5;
     // let midquerystring12 = querystring24 + querystring29 + querystring5;
     // let midquerystring13 = querystring25 + querystring30 + querystring5;
-    let midquerystring14 = querystring26 + querystring31 + querystring5;
+    // let midquerystring14 = querystring26 + querystring31 + querystring5;
 
 
     let finalquerystring = querystring1 + midquerystring1 + "," + 
     midquerystring2 + "," + midquerystring3 + "," + midquerystring4 + 
     "," + midquerystring5 + "," + midquerystring7 +
-    "," + midquerystring8 + "," + midquerystring14 + querystring3;
+    "," + midquerystring8 + querystring3;
     db.query(finalquerystring,
             (err, result)=>{
                 if(err){
