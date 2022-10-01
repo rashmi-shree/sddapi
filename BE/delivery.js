@@ -236,7 +236,11 @@ router.put('/updateDeliveryData',(req,res)=>{
     //     state = state1;
     //     state_code = state_code1;
     // }
-
+if (state == undefined){
+    state = reqdata.rowdatadisplayed.map((data)=>{
+        return data.state;
+    });
+}
     var phone_number_alter_one = '';
     var phone_number_alter_two = '';
     var requested_delivery_date = '';
