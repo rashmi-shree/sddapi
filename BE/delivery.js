@@ -338,8 +338,8 @@ router.put('/updateDeliveryData',(req,res)=>{
         querystring21 += ` when product_hsn_code = ${hsn_codes[i]} then  "${customer_name}"`;
         querystring27 += ` when product_hsn_code = ${hsn_codes[i]} then  "${customer_address}"`;
         querystring28 += ` when product_hsn_code = ${hsn_codes[i]} then  "${phone_number[i]}"`;
-        querystring29 += ` when product_hsn_code = ${hsn_codes[i]} then  "${phone_number_alter_one[i]}"`;
-        querystring30 += ` when product_hsn_code = ${hsn_codes[i]} then  "${phone_number_alter_two[i]}"`;
+        querystring29 += ` when product_hsn_code = ${hsn_codes[i]} then  "${phone_number_alter_one}"`;
+        querystring30 += ` when product_hsn_code = ${hsn_codes[i]} then  "${phone_number_alter_two}"`;
         querystring31 += ` when product_hsn_code = ${hsn_codes[i]} then  "${quantity}"`;
         if (extended_discount[i] != null){
             querystring13 += ` when product_hsn_code = ${hsn_codes[i]} then  "${extended_discount[i]}"`;
