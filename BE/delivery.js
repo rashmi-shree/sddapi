@@ -227,6 +227,12 @@ router.put('/updateDeliveryData',(req,res)=>{
     console.log("----------------------------------owner_company1",owner_company1);
     console.log("----------------------------------state1",state1);
     console.log("----------------------------------state_code1",state_code1);
+
+    if(state1 != state){
+        state = state1;
+        state_code = state_code1;
+    }
+
     var phone_number_alter_one = '';
     var phone_number_alter_two = '';
     var requested_delivery_date = '';
