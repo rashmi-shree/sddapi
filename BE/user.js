@@ -10,9 +10,21 @@ const db = mysql.createConnection({
     database : 'sdd'
 });
 router.get('/profile/:id',(req,res)=>{
-    const id = req.params;
+    const id = req.params.id;
     console.log('id', id);
     res.json(id);
+    db.query(
+        `select * from users where id = ?`,
+        [id],
+        (err, result)=>{
+            if(err){
+                console.log(err);
+            }
+            else{
+                res.json(result);
+            }
+        }
+    )
 })
 router.get('/getusers',(req,res)=>{
     db.query(
