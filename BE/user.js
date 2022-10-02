@@ -12,6 +12,7 @@ const db = mysql.createConnection({
 router.get('/profile/:id',(req,res)=>{
     const id = req.params;
     console.log('id', id);
+    res.json(id);
 })
 router.get('/getusers',(req,res)=>{
     db.query(
