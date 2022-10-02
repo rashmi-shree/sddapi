@@ -300,7 +300,7 @@ router.post('/todaydatefetchcustomerdata', (req,res)=>{
     console.log("currentdate",currentdate);
     db.query(
         `select * from customer_follow_up_data where 
-        enquiry_date = ? and final_status = ?`,
+        follow_up_call = ? and final_status = ?`,
         [
             currentdate,
             'Follow up in progress'
