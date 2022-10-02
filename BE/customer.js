@@ -328,6 +328,7 @@ router.put('/updateCustomerDetails',(req,res)=>{
     const product_hsn_code = reqdata.product_hsn_code;
     const customer_reference_no = reqdata.customer_reference_no;
     if (follow_up_call == "Cancelled"){
+        console.log("hi cancel clicked")
         db.query(
             `DELETE FROM delivery_report_table WHERE 
             customer_reference_no=? and product_hsn_code = ?`,
@@ -346,6 +347,7 @@ router.put('/updateCustomerDetails',(req,res)=>{
             )
     }
     else{
+        console.log("hi cancel not clicked")
         if (follow_up_call == null){
             db.query(
                 `update customer_follow_up_data set
