@@ -11,8 +11,6 @@ const db = mysql.createConnection({
 });
 router.get('/profile/:id',(req,res)=>{
     const id = req.params.id;
-    console.log('id', id);
-    res.json(id);
     db.query(
         `select * from users where id = ?`,
         [id],
