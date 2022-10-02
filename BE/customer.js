@@ -320,24 +320,20 @@ router.put('/updateCustomerDetails',(req,res)=>{
     const customer_name = reqdata.customer_name;
     const customer_address = reqdata.customer_address;
     const phone_number = reqdata.phone_number;
+    const phone_number_alter_one = reqdata.phone_number_alter_one;
+    const phone_number_alter_two = reqdata.phone_number_alter_two;
     const comments = reqdata.comments;
     const follow_up_call = reqdata.follow_up_call;
     const final_status = reqdata.final_status;
+    const product_hsn_code = reqdata.product_hsn_code;
     const customer_reference_no = reqdata.customer_reference_no;
-    if (follow_up_call == null){
+    if (follow_up_call == "Cancelled"){
         db.query(
-            `update customer_follow_up_data set
-            customer_name =?, customer_address =?,
-            phone_number =?, comments = ?,
-            final_status =?
-            where customer_reference_no = ?`,
+            `DELETE FROM delivery_report_table WHERE 
+            customer_reference_no=? and product_hsn_code = ?`,
             [
-                customer_name,
-                customer_address,
-                phone_number,
-                comments,
-                final_status,
-                customer_reference_no
+                customer_reference_no,
+                product_hsn_code
             ],
                 (err, result)=>{
                     if(err){
@@ -349,21 +345,88 @@ router.put('/updateCustomerDetails',(req,res)=>{
                 }
             )
     }
-    else {
+    else{
+        if (follow_up_call == null){
+            db.query(
+                `update customer_follow_up_data set
+                customer_name =?, customer_address =?,
+                phone_number =?,phone_number_alter_one =?,
+                phone_number_alter_two = ?, comments = ?,
+                final_status =?
+                where customer_reference_no = ?`,
+                [
+                    customer_name,
+                    customer_address,
+                    phone_number,
+                    phone_number_alter_one,
+                    phone_number_alter_two,
+                    comments,
+                    final_status,
+                    customer_reference_no
+                ],
+                    (err, result)=>{
+                        if(err){
+                            console.log(err);
+                        }
+                        else{
+                            res.json(result);
+                        }
+                    }
+                )
+        }
+        else {
+            db.query(
+                `update customer_follow_up_data set
+                customer_name =?, customer_address =?,
+                phone_number =?,phone_number_alter_one =?,
+                phone_number_alter_two = ?, comments = ?,
+                follow_up_call = ?,
+                final_status =?
+                where customer_reference_no = ?`,
+                [
+                    customer_name,
+                    customer_address,
+                    phone_number,
+                    phone_number_alter_one,
+                    phone_number_alter_two,
+                    comments,
+                    follow_up_call,
+                    final_status,
+                    customer_reference_no
+                ],
+                    (err, result)=>{
+                        if(err){
+                            console.log(err);
+                        }
+                        else{
+                            res.json(result);
+                        }
+                    }
+                )
+        }
+    }
+   
+})
+router.put('/updateDeliveryDetails',(req,res)=>{
+    const reqdata = req.body.params.updaterowdata;
+    const customer_name = reqdata.customer_name;
+    const customer_address = reqdata.customer_address;
+    const phone_number = reqdata.phone_number;
+    const phone_number_alter_one = reqdata.phone_number_alter_one;
+    const phone_number_alter_two = reqdata.phone_number_alter_two;
+    const customer_reference_no = reqdata.customer_reference_no;
         db.query(
-            `update customer_follow_up_data set
+            `update delivery_report_table set
             customer_name =?, customer_address =?,
-            phone_number =?, comments = ?,
-            follow_up_call = ?,
-            final_status =?
+            phone_number =?,phone_number_alter_one =?,
+            phone_number_alter_two = ?
             where customer_reference_no = ?`,
             [
                 customer_name,
                 customer_address,
                 phone_number,
-                comments,
-                follow_up_call,
-                final_status,
+                phone_number_alter_one,
+                phone_number_alter_two,
                 customer_reference_no
             ],
                 (err, result)=>{
@@ -375,6 +438,5 @@ router.put('/updateCustomerDetails',(req,res)=>{
                     }
                 }
             )
-    }
 })
 module.exports = router;
