@@ -9,6 +9,10 @@ const db = mysql.createConnection({
     password : 'iwbFR$$0102',
     database : 'sdd'
 });
+router.get('/profile/:id',(req,res)=>{
+    const id = req.params;
+    console.log('id', id);
+})
 router.get('/getusers',(req,res)=>{
     db.query(
         `select * from users`,

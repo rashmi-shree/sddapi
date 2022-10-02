@@ -25,7 +25,7 @@ router.post('/login',(req,res)=>{
     (err,userresponse)=>{
         if (userresponse.length>0){
             db.query(
-                `select username, password
+                `select *
                  from users where username = ? and password = ?`,
                 [username, password],
                 (err, result)=>{
