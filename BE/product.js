@@ -147,6 +147,9 @@ router.post('/addProductData',(req,res)=>{
     const reqdata = req.body.params;
     const product_name = reqdata.data.product_name;
     const owner_company = reqdata.selectedowner;
+    const owner_address = reqdata.data.owner_address;
+    const owner_contact_one = reqdata.data.owner_contact_one;
+    const owner_contact_two = reqdata.data.owner_contact_two;
     const product_hsn_code = reqdata.data.product_hsn_code;
     const product_description = reqdata.data.product_description;
     const unit_of_measure = reqdata.data.unit_of_measure;
@@ -161,6 +164,9 @@ router.post('/addProductData',(req,res)=>{
             product_hsn_code,
             product_name,
             owner_company,
+            owner_address,
+            owner_contact_one,
+            owner_contact_two,
             product_description,
             unit_of_measure,
             rate_per_unit,
@@ -168,11 +174,14 @@ router.post('/addProductData',(req,res)=>{
             product_status,
             stock,
             discount
-        ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
             product_hsn_code,
             product_name,
             owner_company,
+            owner_address,
+            owner_contact_one,
+            owner_contact_two,
             product_description,
             unit_of_measure,
             rate_per_unit,
@@ -197,6 +206,9 @@ router.put('/updateProductsDetails',(req,res)=>{
     const product_hsn_code = reqdata.data.product_hsn_code;
     const product_name = reqdata.data.product_name;
     const owner_company = reqdata.selectedowner;
+    const owner_address = reqdata.data.owner_address;
+    const owner_contact_one = reqdata.data.owner_contact_one;
+    const owner_contact_two = reqdata.data.owner_contact_two;
     const product_description = reqdata.data.product_description;
     const unit_of_measure = reqdata.data.unit_of_measure;
     const rate_per_unit = reqdata.data.rate_per_unit;
@@ -206,12 +218,16 @@ router.put('/updateProductsDetails',(req,res)=>{
     const stock = reqdata.data.stock;
     db.query(
     `update product_details_table set 
-    product_name = ?, owner_company = ? ,product_description= ?,
+    product_name = ?, owner_company = ? , owner_address = ? ,
+    owner_contact_one = ? ,owner_contact_two = ? , product_description= ?,
     unit_of_measure = ?, rate_per_unit= ?, gst_rate = ?,
     product_status = ?,stock = ?, discount = ? where product_hsn_code=?`,
     [
         product_name,
         owner_company,
+        owner_address,
+        owner_contact_one,
+        owner_contact_two,
         product_description,
         unit_of_measure,
         rate_per_unit,
@@ -233,7 +249,6 @@ router.put('/updateProductsDetails',(req,res)=>{
 })
 router.put('/updateProductsDetailsProductDataDecrement',(req,res)=>{
     const reqdata = req.body.rowdatadisplayed;
-    console.log("hallelua", reqdata);
     var query1 = `UPDATE sdd.product_details_table SET stock = ( CASE `;
     var query3 = "";
     var query6 = ` ELSE  (stock) END )`;
