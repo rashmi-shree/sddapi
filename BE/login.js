@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
+'use strict';
 
 const db = mysql.createConnection({
     user:'rashmi',
@@ -10,47 +11,40 @@ const db = mysql.createConnection({
     database : 'sdd'
 });
 router.post('/login',(req,res)=>{
-    const reqestData = req.body.params.logindata;
+    const reqestData = req.body.params.logindataalter;
     const username = reqestData.username;
     const password = reqestData.password;
-    // console.log("hiiii. username", username);
-    // if (username == undefined){
-    //     console.log("nothing");
-    // }
-    // else {
-    //     console.log("something");
-    // }
-    db.query(`select username from users where username = ?`,
-    [username],
-    (err,userresponse)=>{
-        if (userresponse.length>0){
-            db.query(
-                `select *
-                 from users where username = ? and password = ?`,
-                [username, password],
-                (err, result)=>{
-                    if (err){
-                        console.log(err);
-                        // res.json({msg:"password incorrect", code:401})
-                    }else{
-                        if(result.length ){
-                            res.json(result);
-                        }
-                        else {
-                            res.json({msg:"Password Incorrect", code:401})
-                        }
-                    }
-                }
-            );
+    let buffusername = new  Buffer.from(username, 'base64');
+    let decodedusername = buffusername.toString('ascii');
+    
+    let buffpassword = new Buffer.from(password, 'base64');
+    let decodedpassword = buffpassword.toString('ascii');
+    var error;
+    try{
+        if (username.length == 0){
+            throw error="Username is missing";
         }
-        else if (userresponse.length == 0){
-            res.json({msg:"Enter Credentials", code:404});
+        else if(password.length == 0){
+            throw error="Password is missing";
         }
         else {
-            res.json({msg:"user is not present", code:404});
+            db.query(`select username
+            from users where username = ? and password = ?`,
+            [decodedusername, decodedpassword],
+            (err, result)=>{
+                if(result.length == 0){
+                    res.send({message:"Password Incorrect"});
+                }
+                else{
+                    res.json(result);
+                }
+            }
+            )
         }
-    })
- 
+    }
+    catch(e){
+        res.send({message:error});
+    }
 })
 
 module.exports = router;
