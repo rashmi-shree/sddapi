@@ -37,9 +37,23 @@ router.get('/getusers',(req,res)=>{
         }
     )
 })
+router.get('/getemployeesonly',(req,res)=>{
+    db.query(
+        `select username from users where username not in (?)`,
+        ["Admin"],
+        (err, result)=>{
+            if(err){
+                console.log(err);
+            }
+            else{
+                res.json(result);
+            }
+        }
+    )
+})
+
 router.put('/edituserdata',(req,res)=>{
     const reqdata = req.body.params;
-    console.log("reqdata",reqdata);
     const username = reqdata.data.username;
     const password = reqdata.data.password;
     const id = reqdata.id;
@@ -67,7 +81,6 @@ router.put('/edituserdata',(req,res)=>{
 })
 router.delete('/deleteuserdata', (req,res)=>{
     const reqdata = req.body;
-    console.log("reqdata",reqdata);
     const id = reqdata.id;
     db.query(
         'DELETE FROM users WHERE id = ?',
@@ -86,7 +99,6 @@ router.post('/insertuserdata',(req,res)=>{
     const reqdata = req.body.params;
     const username = reqdata.addFormData.username;
     const password = reqdata.addFormData.password;
-    console.log("hello", reqdata);
     db.query(
         `insert into users 
         (   
