@@ -36,7 +36,10 @@ router.post('/login',(req,res)=>{
                     res.send({message:"Password Incorrect"});
                 }
                 else{
-                    res.json(result);
+                    let string = result[0].username;
+                    let buffresult = Buffer.from(string, 'utf8');
+                    let base64String = buffresult.toString("base64");
+                    res.json(base64String);
                 }
             }
             )
