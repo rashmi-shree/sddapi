@@ -4,10 +4,10 @@ const mysql = require('mysql');
 
 const db = mysql.createConnection({
     user:'rashmi',
-    host:'ec2-13-48-147-5.eu-north-1.compute.amazonaws.com',
+    host:'ec2-16-171-137-229.eu-north-1.compute.amazonaws.com',
     port:'3306',
     password : 'iwbFR$$0102',
-    database : 'sdd'
+    database : 'invoiceGeneratorDB'
 });
 router.get('/getInvoices',(req, res)=>{
     db.query(`select distinct delivery_date, invoice_no, 
