@@ -23,6 +23,6 @@ app.use("/product",product);
 app.use("/stateandstatecodes",stateandstatecodes);
 app.use("/dealers",dealers);
 
-app.listen(8080,()=>{
-    console.log("server running");
+app.listen(5001,()=>{
+    console.log("server running on port 5001");
 })
