@@ -26,3 +26,4 @@ app.use("/dealers",dealers);
 app.listen(5001,()=>{
     console.log("server running on port 5001");
 })
+app.get('/',(req, res)=> res.json('My api is running :)'))
