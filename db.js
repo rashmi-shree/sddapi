@@ -13,8 +13,7 @@ const db = mysql.createConnection({
     host:'ec2-16-171-137-229.eu-north-1.compute.amazonaws.com',
     port:'3306',
     password : 'iwbFR$$0102',
-    database : 'invoiceGeneratorDB',
-    insecureAuth: true
+    database : 'invoiceGeneratorDB'
 });
 
 module.exports = db;
