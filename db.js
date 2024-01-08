@@ -8,12 +8,12 @@ const db = mysql.createConnection({
     // password : 'iwbFR$$0102',
     // database : 'sdddb1',
 
-    // production
-    user:'rashmi',
+    // production code
     host:'ec2-16-171-137-229.eu-north-1.compute.amazonaws.com',
+    database : 'invoiceGeneratorDB',
+    user:'rashmi',
     port:'3306',
     password : 'iwbFR$$0102',
-    database : 'invoiceGeneratorDB'
 });
   
 
