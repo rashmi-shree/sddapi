@@ -29,16 +29,16 @@ app.listen(5001,()=>{
 })
 app.get('/', (req, res) => {
     // Attempt to establish a connection to the database
-    res.send("server running 5001")
-    // db.connect((err) => {
-    //     if (err) {
-    //         console.error('Error connecting to database:', err);
-    //         res.status(500).send('Error connecting to database');
-    //         return;
-    //     }
-    //     console.log('Connected to the database');
-    //     res.send('Connected to the database, server running on 5001');
-    //     // You might want to close the connection here if it's not needed for further operations immediately
-    //     // db.end();
-    // });
+    // res.send("server running")
+    db.connect((err) => {
+        if (err) {
+            console.error('Error connecting to database:', err);
+            res.status(500).send('Error connecting to database');
+            return;
+        }
+        console.log('Connected to the database');
+        res.send('Connected to the database, server running on 5001');
+        // You might want to close the connection here if it's not needed for further operations immediately
+        // db.end();
+    });
 });
