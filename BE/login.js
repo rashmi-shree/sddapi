@@ -4,18 +4,16 @@ const router = express.Router();
 const db = require("../db");
 
 router.post('/login',(req,res)=>{
-    console.log("hello",req.body.username);
-    console.log(req.body.params);
     // const reqestData = req.body.params.logindataalter;
     // // holds the base64-encoded username
-    // const username = reqestData.username;
+    const username = req.body.username;
     // // holds the base64-encoded password
-    // const password = reqestData.password;
+    const password = req.body.password;
     // // A Buffer object created from the base64-encoded username.
-    // let buffusername = new  Buffer.from(username, 'base64');
+    let buffusername = new  Buffer.from(username, 'base64');
     // // The buffusername is then converted to a string in ASCII encoding, effectively decoding the base64-encoded username.
-    // let decodedusername = buffusername.toString('ascii');
-    
+    let decodedusername = buffusername.toString('ascii');
+    console.log("buffusername,decodedusername",buffusername,decodedusername);
     // // A Buffer object created from the base64-encoded password.
     // let buffpassword = new Buffer.from(password, 'base64');
     // // The buffpassword is then converted to a string in ASCII encoding, effectively decoding the base64-encoded password.
