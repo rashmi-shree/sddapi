@@ -4,7 +4,8 @@ const router = express.Router();
 const db = require("../db");
 
 router.post('/login',(req,res)=>{
-    console.log(req);
+    console.log(req.body);
+    console.log(req.body.params);
     // const reqestData = req.body.params.logindataalter;
     // // holds the base64-encoded username
     // const username = reqestData.username;
